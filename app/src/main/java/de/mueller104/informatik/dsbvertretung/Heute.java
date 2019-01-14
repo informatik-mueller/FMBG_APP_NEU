@@ -15,7 +15,7 @@ public class Heute extends Form implements HandlesEventDispatching {
 
         public void $define(){
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
-            StrictMode.setVmPolicy(builder.build());
+            StrictMode.setVmPolicy(builder.build()); //comment
 
             hi = new ActivityStarter(this);
             hi.Action("android.intent.action.VIEW");
