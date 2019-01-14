@@ -9,13 +9,14 @@ import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.Clock;
 import com.google.appinventor.components.runtime.File;
 import android.content.Intent;
+import android.os.StrictMode;
 import android.widget.Toast;
 
 import java.util.concurrent.TimeUnit;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-class Login extends Form implements HandlesEventDispatching {
+public class Login extends Form implements HandlesEventDispatching {
     private TextBox Benutzername;
     private TextBox Passwort;
     private Button LoginButton;
@@ -27,6 +28,11 @@ class Login extends Form implements HandlesEventDispatching {
     private String In = "";
 
     protected void $define() {
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         this.AppName("login");
         this.Title("Screen1");
         Benutzername = new TextBox(this);
@@ -46,7 +52,7 @@ class Login extends Form implements HandlesEventDispatching {
         File1 = new File(this);
 
         try{
-            File1.ReadFrom("/fmgo-config.txt");
+            File1.ReadFrom("file:///storage/emulated/0/beispiel.txt");
             TimeUnit.MILLISECONDS.sleep(500);
         }
         catch(Exception e){
