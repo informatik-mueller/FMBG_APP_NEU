@@ -10,7 +10,6 @@ import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.Button;
@@ -115,7 +114,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
         public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
             if(component.equals(Button5) && eventName.equals("Click")){
-                if(isNetworkAvailable()){
+                if(netzwerkVerfügbar()){
                 Intent intent = new Intent(this, Datumswahl.class);
                 startActivity(intent);}
                 else {
@@ -127,8 +126,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             return false;
         }
 
-        //stolen from https://stackoverflow.com/a/4239410/6455909
-        private boolean isNetworkAvailable() {
+        private boolean netzwerkVerfügbar() {
             ConnectivityManager connectivityManager =
                     (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

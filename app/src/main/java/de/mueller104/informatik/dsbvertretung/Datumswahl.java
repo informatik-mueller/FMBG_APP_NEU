@@ -66,8 +66,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
                 timeTable = timeTables.get(0);
 
             else if(component.equals(Heute))
-                timeTable = timeTables.get(1); //comment
-
+                timeTable = timeTables.get(1);
             else return true;
 
             String dlLink = timeTable.getUrl();
