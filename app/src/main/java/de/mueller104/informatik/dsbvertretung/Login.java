@@ -34,7 +34,7 @@ import java.util.Scanner;
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class Login extends Form implements HandlesEventDispatching {
-    private File dataDir = new File(Environment.getExternalStorageDirectory(), "/FMBGo");
+    private File dataDir = new File(Environment.getExternalStorageDirectory() +"/FMBGo");
     private File  configFile = null;
     private Notifier Alert;
     private boolean Gefragt = false;
@@ -214,7 +214,7 @@ public class Login extends Form implements HandlesEventDispatching {
 
         catch(FileNotFoundException e){
             e.printStackTrace();
-            //Toast.makeText(this, "Konfigdatei konnte nicht gelesen werden", LENGTH_SHORT).show();
+            Toast.makeText(this, "Konfigdatei konnte nicht gelesen werden", LENGTH_SHORT).show();
         }
     }
 
@@ -225,12 +225,12 @@ public class Login extends Form implements HandlesEventDispatching {
             FileOutputStream fobj = new FileOutputStream(configFile);
             fobj.write(content.getBytes());
             fobj.close();
-            //Toast.makeText(this, "Konfigdatei wurde erstellt", LENGTH_SHORT).show();
+            Toast.makeText(this, "Konfigdatei wurde erstellt", LENGTH_SHORT).show();
         }
         catch(IOException e){
             System.err.println("Fehler beim Erstellen der Konfigdatei");
             e.printStackTrace();
-            //Toast.makeText(this, "Konfigdatei konnte nicht erstellt werden", LENGTH_SHORT).show();
+            Toast.makeText(this, "Konfigdatei konnte nicht erstellt werden", LENGTH_SHORT).show();
         }
 
 
