@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Datumswahl"></activity>
+        <activity android:name=".SimpleRadio"></activity>
         <activity android:name=".VertretungViewer"></activity>
         <activity android:name=".MainMenu"></activity>
     </application>

@@ -21,14 +21,14 @@ import static android.widget.Toast.LENGTH_SHORT;
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
         private HorizontalArrangement HorizontalArrangement1;
-        private Button Button1;
+        private Button RadioButton;
         private Button Button2;
         private HorizontalArrangement HorizontalArrangement2;
         private VerticalArrangement VerticalArrangement1;
         private Button Button3;
         private Button Button4;
         private VerticalArrangement VerticalArrangement2;
-        private Button Button5;
+        private Button VertretungButton;
         private Button Button6;
 
         protected void $define() {
@@ -47,14 +47,14 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             HorizontalArrangement1.Height(-1037);
             HorizontalArrangement1.Width(-1100);
             HorizontalArrangement1.Row(0);
-            Button1 = new Button(HorizontalArrangement1);
-            Button1.BackgroundColor(0xFFCC6600);
-            Button1.FontSize(20);
-            Button1.Height(LENGTH_FILL_PARENT);
-            Button1.Width(-1062);
-            Button1.Shape(2);
-            Button1.Text("Schulradio");
-            Button1.TextColor(0xFF444444);
+            RadioButton = new Button(HorizontalArrangement1);
+            RadioButton.BackgroundColor(0xFFCC6600);
+            RadioButton.FontSize(20);
+            RadioButton.Height(LENGTH_FILL_PARENT);
+            RadioButton.Width(-1062);
+            RadioButton.Shape(2);
+            RadioButton.Text("Schulradio");
+            RadioButton.TextColor(0xFF444444);
             Button2 = new Button(HorizontalArrangement1);
             Button2.BackgroundColor(0xFFF89432);
             Button2.FontSize(20);
@@ -93,14 +93,14 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             VerticalArrangement2.BackgroundColor(0x00FFFFFF);
             VerticalArrangement2.Height(-1062);
             VerticalArrangement2.Width(-1050);
-            Button5 = new Button(VerticalArrangement2);
-            Button5.BackgroundColor(0xFFEA7D12);
-            Button5.FontSize(20);
-            Button5.Height(-1030);
-            Button5.Width(LENGTH_FILL_PARENT);
-            Button5.Shape(2);
-            Button5.Text("Vertretung");
-            Button5.TextColor(0xFF444444);
+            VertretungButton = new Button(VerticalArrangement2);
+            VertretungButton.BackgroundColor(0xFFEA7D12);
+            VertretungButton.FontSize(20);
+            VertretungButton.Height(-1030);
+            VertretungButton.Width(LENGTH_FILL_PARENT);
+            VertretungButton.Shape(2);
+            VertretungButton.Text("Vertretung");
+            VertretungButton.TextColor(0xFF444444);
             Button6 = new Button(VerticalArrangement2);
             Button6.BackgroundColor(0xFFF89432);
             Button6.FontSize(20);
@@ -113,12 +113,27 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         }
 
         public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
-            if(component.equals(Button5) && eventName.equals("Click")){
-                if(netzwerkVerfügbar()){
+            if(component.equals(VertretungButton) && eventName.equals("Click")){
+
+                if(netzwerkVerfügbar()) {
                 Intent intent = new Intent(this, Datumswahl.class);
-                startActivity(intent);}
+                startActivity(intent);
+                }
+
                 else {
                     Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
+                }
+                return true;
+            }
+
+            if(component.equals(RadioButton) && eventName.equals("Click")){
+                if(netzwerkVerfügbar()){
+                    Intent intent = new Intent(this, SimpleRadio.class);
+                    startActivity(intent);
+                }
+
+                else {
+                     Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
                 }
                 return true;
             }
