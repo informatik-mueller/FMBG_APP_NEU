@@ -169,28 +169,12 @@ public class Login extends Form implements HandlesEventDispatching {
         VerticalArrangement4.Height(-1070);
         VerticalArrangement4.Width(-1020);
 ;
-        PermissionsAbfragen();
-        //dataDir.mkdirs();
+        //PermissionsAbfragen();
         readAutoLogin();
 
         EventDispatcher.registerEventForDelegation(this, "ClickEvent", "Click" );
     }
 
-    private void PermissionsAbfragen() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) && !Gefragt) {
-                Alert.ShowMessageDialog("Es wird Zugriff auf das Dateisystem benötigt, um die Einstellungen für diese App speichern zu können", "Berechtigung", "Schließen");
-                Gefragt = true;
-            }
-                else{ ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                        1);
-            }
-        }
-    }
 
 
     private void readAutoLogin() {
@@ -237,7 +221,7 @@ public class Login extends Form implements HandlesEventDispatching {
         return false;
     }
     public void LoginButtonClick(){
-        PermissionsAbfragen();
+        //PermissionsAbfragen();
         if(BenutzernameBox.Text().equals("fmbg") && md5(PasswortBox.Text()).equals("bf2d9f31612873ca4cc918d8d6e467cf")){
             enableAutoLogin();
             Toast.makeText(this, "Autologin wurde aktiviert", LENGTH_SHORT).show();
