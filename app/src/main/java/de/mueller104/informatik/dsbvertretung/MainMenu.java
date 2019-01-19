@@ -2,6 +2,7 @@ package de.mueller104.informatik.dsbvertretung;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
@@ -33,10 +34,15 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private Button KontaktButton;
         private Button EinstellungenButton;
         private Notifier PopUp;
+        private int EasterEggCounter = 0;
+        private boolean isEasterEgg = false;
+        private boolean FirstTimeSolitär = false;
 
         @Override
         public void onBackPressed(){
+            if(!isEasterEgg)
             PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Nein", true);
+            else PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Solitär", true);
         }
 
         protected void $define() {
@@ -44,6 +50,8 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             this.AppName("FMBG_App_Entwurf");
             this.BackgroundColor(0xFF444444);
             this.Title("Felix-Mendelssohn_Bartholdy_Gymnasium");
+
+            checkEasterEgg();
 
             PopUp = new Notifier(this);
             TableArrangement1 = new TableArrangement(this);
@@ -131,7 +139,15 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             EventDispatcher.registerEventForDelegation(this, "2", "AfterChoosing");
         }
 
-        public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
+    private void checkEasterEgg() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("easteregg", Context.MODE_PRIVATE);
+        boolean easteregg = sharedPreferences.getBoolean("enable", false);
+        if(easteregg){
+            isEasterEgg = true;
+        }
+    }
+
+    public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
             if(component.equals(VertretungButton) && eventName.equals("Click")){
 
                 if(netzwerkVerfügbar()) {
@@ -172,6 +188,18 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 String choice = (String)params[0];
                 if(choice.equals("Ja"))
                     exit();
+                else if(choice.equals("Nein"))
+                    EasterEggCounter++;
+
+                if(choice.equals("Solitär")){
+                    Intent intent = new Intent(this, Solitär.class);
+                    intent.putExtra("first_time", FirstTimeSolitär);
+                    startActivity(intent);
+                }
+
+
+                else if(EasterEggCounter == 5 && !choice.equals("Solitär"))
+                    enableEasterEgg();
                 return true;
             }
 
@@ -191,6 +219,16 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+        }
+
+        private void enableEasterEgg(){
+            SharedPreferences sharedPreferences = this.getSharedPreferences("easteregg", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("enable", true);
+            editor.commit();
+            Toast.makeText(this, "Solitär wurde aktiviert", Toast.LENGTH_SHORT).show();
+            checkEasterEgg();
+            FirstTimeSolitär = true;
         }
 
     }
