@@ -10,6 +10,7 @@ import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.Button;
@@ -30,12 +31,20 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private VerticalArrangement VerticalArrangement2;
         private Button VertretungButton;
         private Button Button6;
+        private Notifier PopUp;
+
+        @Override
+        public void onBackPressed(){
+            PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Nein", true);
+        }
 
         protected void $define() {
 
             this.AppName("FMBG_App_Entwurf");
             this.BackgroundColor(0xFF444444);
             this.Title("Felix-Mendelssohn_Bartholdy_Gymnasium");
+
+            PopUp = new Notifier(this);
             TableArrangement1 = new TableArrangement(this);
             TableArrangement1.Columns(8);
             TableArrangement1.Height(LENGTH_FILL_PARENT);
@@ -110,6 +119,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             Button6.Text("Kontakt");
             Button6.TextColor(0xFF444444);
             EventDispatcher.registerEventForDelegation(this, "1", "Click");
+            EventDispatcher.registerEventForDelegation(this, "2", "AfterChoosing");
         }
 
         public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
@@ -138,8 +148,16 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 return true;
             }
 
+            if(component.equals(PopUp) && eventName.equals("AfterChoosing")){
+                String choice = (String)params[0];
+                if(choice.equals("Ja"))
+                    exit();
+                return true;
+            }
+
             return false;
         }
+
 
         private boolean netzwerkVerfügbar() {
             ConnectivityManager connectivityManager =
@@ -147,5 +165,12 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
+
+        private void exit(){
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
 
     }
