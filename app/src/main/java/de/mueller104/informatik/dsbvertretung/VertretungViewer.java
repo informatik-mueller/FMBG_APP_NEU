@@ -12,7 +12,7 @@ public class VertretungViewer extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        WebView  webview = findViewById(R.id.wrap);
+        WebView  webview = findViewById(R.id.web);
         WebSettings webSettings = webview.getSettings();
         webSettings.setJavaScriptEnabled(false);
         webSettings.setSupportZoom(true);
