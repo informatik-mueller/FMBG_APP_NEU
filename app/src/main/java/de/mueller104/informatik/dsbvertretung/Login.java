@@ -12,7 +12,6 @@ import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.TextBox;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.VerticalArrangement;
-import com.google.gson.Gson;
 
 import android.Manifest;
 import android.content.Context;
