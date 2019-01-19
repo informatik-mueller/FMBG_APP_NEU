@@ -15,27 +15,21 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.gson.Gson;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Scanner;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
 public class Login extends Form implements HandlesEventDispatching {
-    private File dataDir = new File(Environment.getExternalStorageDirectory(), "/FMBGo");
-    private File  configFile = null;
     private Notifier Alert;
     private boolean Gefragt = false;
 
@@ -177,11 +171,10 @@ public class Login extends Form implements HandlesEventDispatching {
         VerticalArrangement4.Width(-1020);
 ;
         PermissionsAbfragen();
-        dataDir.mkdir();
-        KonfigAuslesen();
+        //dataDir.mkdirs();
+        readAutoLogin();
 
         EventDispatcher.registerEventForDelegation(this, "ClickEvent", "Click" );
-        EventDispatcher.registerEventForDelegation(this, "TimerEvent", "Timer" );
     }
 
     private void PermissionsAbfragen() {
@@ -201,39 +194,20 @@ public class Login extends Form implements HandlesEventDispatching {
     }
 
 
-    private void KonfigAuslesen() {
-        try{
-            configFile = new File(dataDir, "config.json");
-            String json = new Scanner(configFile).useDelimiter("\\A").next();
-            Konfiguration config = new Gson().fromJson(json, Konfiguration.class);
-            if(config.getAutoLogin()){
-                Toast.makeText(this, "Autologin", LENGTH_SHORT);
+    private void readAutoLogin() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+        boolean autoLogin = sharedPreferences.getBoolean("AutoLogin", false);
+            if(autoLogin){
                 startActivity(new Intent(this, MainMenu.class));
             }
-        }
-
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-            //Toast.makeText(this, "Konfigdatei konnte nicht gelesen werden", LENGTH_SHORT).show();
-        }
     }
 
-    private void KonfigErstellen() {
-        configFile = new File(dataDir, "config.json");
-        String content = new Gson().toJson(new Konfiguration());
-        try{
-            FileOutputStream fobj = new FileOutputStream(configFile);
-            fobj.write(content.getBytes());
-            fobj.close();
-            //Toast.makeText(this, "Konfigdatei wurde erstellt", LENGTH_SHORT).show();
-        }
-        catch(IOException e){
-            System.err.println("Fehler beim Erstellen der Konfigdatei");
-            e.printStackTrace();
-            //Toast.makeText(this, "Konfigdatei konnte nicht erstellt werden", LENGTH_SHORT).show();
-        }
-
-
+    private void enableAutoLogin() {
+        SharedPreferences sharedPreferences = this.getSharedPreferences("login", Context.MODE_PRIVATE);
+        Konfiguration config = new Konfiguration();
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("AutoLogin", config.getAutoLogin());
+        editor.commit();
         }
 
     public String md5(String s) {
@@ -266,8 +240,9 @@ public class Login extends Form implements HandlesEventDispatching {
     public void LoginButtonClick(){
         PermissionsAbfragen();
         if(BenutzernameBox.Text().equals("fmbg") && md5(PasswortBox.Text()).equals("bf2d9f31612873ca4cc918d8d6e467cf")){
-            KonfigErstellen();
-            KonfigAuslesen();
+            enableAutoLogin();
+            Toast.makeText(this, "Autologin wurde aktiviert", LENGTH_SHORT).show();
+            readAutoLogin();
         }
         else {
             Toast.makeText(this, "Falsche Anmeldedaten", LENGTH_SHORT).show();

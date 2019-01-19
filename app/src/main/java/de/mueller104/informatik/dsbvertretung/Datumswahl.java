@@ -23,6 +23,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private Label Space2;
     private Label Bitte;
     private Label Hinweis;
+    private final int CENTER_HORIZONTAL = 3;
 
 
     protected void $define(){
@@ -32,7 +33,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         StrictMode.setThreadPolicy(policy);
 
 
-        this.AlignHorizontal(3);
+        this.AlignHorizontal(CENTER_HORIZONTAL);
         Bitte = new Label(this);
         Bitte.Text("Bitte wählen Sie das gewünschte Datum");
         Bitte.HeightPercent(10);
@@ -41,8 +42,9 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         Space2 = new Label(this);
         Space2.HeightPercent(60);
         Hinweis = new Label(this);
+        Hinweis.TextColor(Label.COLOR_RED);
 
-        Hinweis.Text("Dieses Acitivity sieht schrecklich aus (Es wird Hilfe erbeten von der Design-Gruppe)");
+        Hinweis.Text("");
 
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
         timeTables = dsbMobile.getTimeTables();
