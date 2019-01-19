@@ -168,8 +168,6 @@ public class Login extends Form implements HandlesEventDispatching {
         VerticalArrangement4.BackgroundColor(0x00FFFFFF);
         VerticalArrangement4.Height(-1070);
         VerticalArrangement4.Width(-1020);
-;
-        //PermissionsAbfragen();
         readAutoLogin();
 
         EventDispatcher.registerEventForDelegation(this, "ClickEvent", "Click" );
@@ -221,7 +219,6 @@ public class Login extends Form implements HandlesEventDispatching {
         return false;
     }
     public void LoginButtonClick(){
-        //PermissionsAbfragen();
         if(BenutzernameBox.Text().equals("fmbg") && md5(PasswortBox.Text()).equals("bf2d9f31612873ca4cc918d8d6e467cf")){
             enableAutoLogin();
             Toast.makeText(this, "Autologin wurde aktiviert", LENGTH_SHORT).show();
