@@ -3,7 +3,6 @@ package de.mueller104.informatik.dsbvertretung;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -12,7 +11,6 @@ import android.widget.SearchView;
 
 public class VertretungViewer extends AppCompatActivity {
 
-    private int ClickCounter = 0;
     private WebView webview;
 
     private SearchView.OnQueryTextListener Handler = new SearchView.OnQueryTextListener(){
@@ -33,7 +31,7 @@ public class VertretungViewer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.vertretung);
         LinearLayout bg = findViewById(R.id.linearLayout);
         bg.setBackgroundColor(Color.WHITE);
         webview = findViewById(R.id.web);

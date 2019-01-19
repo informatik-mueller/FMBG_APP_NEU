@@ -23,7 +23,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
         private HorizontalArrangement HorizontalArrangement1;
         private Button RadioButton;
-        private Button KantineButton;
+        private Button SchulessenButton;
         private HorizontalArrangement HorizontalArrangement2;
         private VerticalArrangement VerticalArrangement1;
         private Button NewsButton;
@@ -65,14 +65,14 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             RadioButton.Shape(2);
             RadioButton.Text("Schulradio");
             RadioButton.TextColor(0xFF444444);
-            KantineButton = new Button(HorizontalArrangement1);
-            KantineButton.BackgroundColor(0xFFF89432);
-            KantineButton.FontSize(20);
-            KantineButton.Height(LENGTH_FILL_PARENT);
-            KantineButton.Width(LENGTH_FILL_PARENT);
-            KantineButton.Shape(2);
-            KantineButton.Text("Kantine");
-            KantineButton.TextColor(0xFF444444);
+            SchulessenButton = new Button(HorizontalArrangement1);
+            SchulessenButton.BackgroundColor(0xFFF89432);
+            SchulessenButton.FontSize(20);
+            SchulessenButton.Height(LENGTH_FILL_PARENT);
+            SchulessenButton.Width(LENGTH_FILL_PARENT);
+            SchulessenButton.Shape(2);
+            SchulessenButton.Text("Kantine");
+            SchulessenButton.TextColor(0xFF444444);
             HorizontalArrangement2 = new HorizontalArrangement(TableArrangement1);
             HorizontalArrangement2.BackgroundColor(0x00FFFFFF);
             HorizontalArrangement2.Column(0);
@@ -159,6 +159,12 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
             if(component.equals(NewsButton) && eventName.equals("Click")){
                 Intent intent = new Intent(this, NewsActivity.class);
+                startActivity(intent);
+            }
+
+            if(component.equals(SchulessenButton) && eventName.equals("Click")){
+                Intent intent = new Intent(this, Schulessen.class);
+                intent.putExtra("url", "https://natuerlich-kunde.com/");
                 startActivity(intent);
             }
 

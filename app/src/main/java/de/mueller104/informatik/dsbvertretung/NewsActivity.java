@@ -1,5 +1,7 @@
 package de.mueller104.informatik.dsbvertretung;
 
+import com.google.appinventor.components.runtime.Button;
+import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
@@ -22,6 +24,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         this.AlignHorizontal(3);
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
         Nachrichten = dsbMobile.getNews();
+        //Nachrichten.add(Nachrichten.get(0));
 
         Überschrift = new Label(this);
         Überschrift.FontSize(30.0f);
@@ -30,6 +33,8 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
         for(int i = 0; i < Nachrichten.size(); i++){
             VerticalArrangement v = new VerticalArrangement(this);
+            Label Space = new Label(v);
+            Space.HeightPercent(3);
             HorizontalArrangement h1 = new HorizontalArrangement(v);
             HorizontalArrangement h2 = new HorizontalArrangement(v);
             HorizontalArrangement h3 = new HorizontalArrangement(v);
@@ -50,6 +55,14 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
             Label MitteilungWert = new Label(h3);
             String MitteilungHTML = nachricht.getWholeMessage();
             MitteilungWert.Text(StringEscapeUtils.unescapeHtml4(MitteilungHTML));
+            if(i<Nachrichten.size()-1){
+                Button line = new Button(v);
+                line.BackgroundColor(Button.COLOR_BLACK);
+                line.Width(Component.LENGTH_FILL_PARENT);
+                line.HeightPercent(1);
+                line.Enabled(false);
+            }
+
 
         }
 
