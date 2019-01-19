@@ -23,14 +23,15 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
         private HorizontalArrangement HorizontalArrangement1;
         private Button RadioButton;
-        private Button Button2;
+        private Button KantineButton;
         private HorizontalArrangement HorizontalArrangement2;
         private VerticalArrangement VerticalArrangement1;
-        private Button Button3;
-        private Button Button4;
+        private Button NewsButton;
+        private Button DokumenteButton;
         private VerticalArrangement VerticalArrangement2;
         private Button VertretungButton;
-        private Button Button6;
+        private Button KontaktButton;
+        private Button EinstellungenButton;
         private Notifier PopUp;
 
         @Override
@@ -64,14 +65,14 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             RadioButton.Shape(2);
             RadioButton.Text("Schulradio");
             RadioButton.TextColor(0xFF444444);
-            Button2 = new Button(HorizontalArrangement1);
-            Button2.BackgroundColor(0xFFF89432);
-            Button2.FontSize(20);
-            Button2.Height(LENGTH_FILL_PARENT);
-            Button2.Width(LENGTH_FILL_PARENT);
-            Button2.Shape(2);
-            Button2.Text("Kantine");
-            Button2.TextColor(0xFF444444);
+            KantineButton = new Button(HorizontalArrangement1);
+            KantineButton.BackgroundColor(0xFFF89432);
+            KantineButton.FontSize(20);
+            KantineButton.Height(LENGTH_FILL_PARENT);
+            KantineButton.Width(LENGTH_FILL_PARENT);
+            KantineButton.Shape(2);
+            KantineButton.Text("Kantine");
+            KantineButton.TextColor(0xFF444444);
             HorizontalArrangement2 = new HorizontalArrangement(TableArrangement1);
             HorizontalArrangement2.BackgroundColor(0x00FFFFFF);
             HorizontalArrangement2.Column(0);
@@ -82,22 +83,30 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             VerticalArrangement1.BackgroundColor(0x00FFFFFF);
             VerticalArrangement1.Height(-1062);
             VerticalArrangement1.Width(-1050);
-            Button3 = new Button(VerticalArrangement1);
-            Button3.BackgroundColor(0xFFF89432);
-            Button3.FontSize(20);
-            Button3.Height(-1020);
-            Button3.Width(LENGTH_FILL_PARENT);
-            Button3.Shape(2);
-            Button3.Text("News");
-            Button3.TextColor(0xFF444444);
-            Button4 = new Button(VerticalArrangement1);
-            Button4.BackgroundColor(0xFFCC6600);
-            Button4.FontSize(20);
-            Button4.Height(LENGTH_FILL_PARENT);
-            Button4.Width(LENGTH_FILL_PARENT);
-            Button4.Shape(2);
-            Button4.Text("Dokumente");
-            Button4.TextColor(0xFF444444);
+            NewsButton = new Button(VerticalArrangement1);
+            NewsButton.BackgroundColor(0xFFF89432);
+            NewsButton.FontSize(20);
+            NewsButton.Height(-1020);
+            NewsButton.Width(LENGTH_FILL_PARENT);
+            NewsButton.Shape(2);
+            NewsButton.Text("News");
+            NewsButton.TextColor(0xFF444444);
+            DokumenteButton = new Button(VerticalArrangement1);
+            DokumenteButton.BackgroundColor(0xFFCC6600);
+            DokumenteButton.FontSize(20);
+            DokumenteButton.Height(-1025);
+            DokumenteButton.Width(LENGTH_FILL_PARENT);
+            DokumenteButton.Shape(2);
+            DokumenteButton.Text("Dokumente");
+            DokumenteButton.TextColor(0xFF444444);
+            EinstellungenButton = new Button(VerticalArrangement1);
+            EinstellungenButton.BackgroundColor(0xFFEA7D12);
+            EinstellungenButton.FontSize(20);
+            EinstellungenButton.Height(-1018);
+            EinstellungenButton.Width(LENGTH_FILL_PARENT);
+            EinstellungenButton.Shape(2);
+            EinstellungenButton.Text("Einstellungen");
+            EinstellungenButton.TextColor(0xFF444444);
             VerticalArrangement2 = new VerticalArrangement(HorizontalArrangement2);
             VerticalArrangement2.BackgroundColor(0x00FFFFFF);
             VerticalArrangement2.Height(-1062);
@@ -110,14 +119,14 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             VertretungButton.Shape(2);
             VertretungButton.Text("Vertretung");
             VertretungButton.TextColor(0xFF444444);
-            Button6 = new Button(VerticalArrangement2);
-            Button6.BackgroundColor(0xFFF89432);
-            Button6.FontSize(20);
-            Button6.Height(LENGTH_FILL_PARENT);
-            Button6.Width(LENGTH_FILL_PARENT);
-            Button6.Shape(2);
-            Button6.Text("Kontakt");
-            Button6.TextColor(0xFF444444);
+            KontaktButton = new Button(VerticalArrangement2);
+            KontaktButton.BackgroundColor(0xFFF89432);
+            KontaktButton.FontSize(20);
+            KontaktButton.Height(LENGTH_FILL_PARENT);
+            KontaktButton.Width(LENGTH_FILL_PARENT);
+            KontaktButton.Shape(2);
+            KontaktButton.Text("Kontakt");
+            KontaktButton.TextColor(0xFF444444);
             EventDispatcher.registerEventForDelegation(this, "1", "Click");
             EventDispatcher.registerEventForDelegation(this, "2", "AfterChoosing");
         }
@@ -146,6 +155,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                      Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
                 }
                 return true;
+            }
+
+            if(component.equals(NewsButton) && eventName.equals("Click")){
+                Intent intent = new Intent(this, NewsActivity.class);
+                startActivity(intent);
             }
 
             if(component.equals(PopUp) && eventName.equals("AfterChoosing")){

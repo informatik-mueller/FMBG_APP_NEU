@@ -26,5 +26,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api files('libs/AppInventor-JavaLibrary.jar')
+    implementation files('libs/commons-text-1.6.jar')
     implementation files('libs/gson-2.6.2.jar')
 }
