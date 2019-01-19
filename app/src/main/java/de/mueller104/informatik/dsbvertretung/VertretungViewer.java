@@ -1,8 +1,10 @@
 package de.mueller104.informatik.dsbvertretung;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -43,10 +45,11 @@ public class VertretungViewer extends AppCompatActivity {
 
         SearchView searchview = findViewById(R.id.search);
         searchview.setOnQueryTextListener(Handler);
+        setTitleColor(0xFF444444);
 
         String vertretungUrl = getIntent().getStringExtra("url");
         String activityTitle = getIntent().getStringExtra("titel");
-        setTitle(activityTitle);
+        getSupportActionBar().setTitle(Html.fromHtml("<font color='#585858'>" + activityTitle + "</font>"));
         webview.loadUrl(vertretungUrl);
     }
 

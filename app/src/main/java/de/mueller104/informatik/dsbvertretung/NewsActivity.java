@@ -21,6 +21,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     protected void $define(){
         this.Scrollable(true);
+        this.BackgroundColor(0xFFF89432);
         this.AlignHorizontal(3);
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
         Nachrichten = dsbMobile.getNews();
@@ -30,6 +31,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         Überschrift.FontSize(30.0f);
         Überschrift.FontBold(true);
         Überschrift.Text("News");
+        Überschrift.TextColor(0xFF444444);
 
         for(int i = 0; i < Nachrichten.size(); i++){
             VerticalArrangement v = new VerticalArrangement(this);
@@ -42,22 +44,28 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
             Label Titel = new  Label(h1);
             Titel.Text("Titel: ");
             Titel.FontBold(true);
+            Titel.TextColor(0xFF444444);
             Label TitelWert = new Label(h1);
             TitelWert.Text(nachricht.getHeadLine());
+            TitelWert.TextColor(0xFF444444);
             Label Datum = new Label(h2);
             Datum.Text("Datum: ");
             Datum.FontBold(true);
+            Datum.TextColor(0xFF444444);
             Label DatumWert = new Label(h2);
             DatumWert.Text(nachricht.getDate());
+            DatumWert.TextColor(0xFF444444);
             Label Mitteilung = new Label(h3);
             Mitteilung.Text("Mitteilung: ");
             Mitteilung.FontBold(true);
+            Mitteilung.TextColor(0xFF444444);
             Label MitteilungWert = new Label(h3);
+            MitteilungWert.TextColor(0xFF444444);
             String MitteilungHTML = nachricht.getWholeMessage();
             MitteilungWert.Text(StringEscapeUtils.unescapeHtml4(MitteilungHTML));
             if(i<Nachrichten.size()-1){
                 Button line = new Button(v);
-                line.BackgroundColor(Button.COLOR_BLACK);
+                line.BackgroundColor(0xFF444444);
                 line.Width(Component.LENGTH_FILL_PARENT);
                 line.HeightPercent(1);
                 line.Enabled(false);

@@ -4,6 +4,7 @@ package de.mueller104.informatik.dsbvertretung;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -44,7 +45,7 @@ public class Schulessen extends AppCompatActivity {
             searchview.setOnQueryTextListener(Handler);
 
             String schulessenUrl = getIntent().getStringExtra("url");
-            setTitle("Schulessen - Internet Bestellsystem");
+            getSupportActionBar().setTitle(Html.fromHtml("<font color='#585858'>" + "Schulessen - Online Bestellsystem" + "</font>"));
             webview.loadUrl(schulessenUrl);
         }
 

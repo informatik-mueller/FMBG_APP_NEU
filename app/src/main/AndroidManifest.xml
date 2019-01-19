@@ -21,7 +21,8 @@
         <activity android:name=".VertretungViewer"></activity>
         <activity android:name=".MainMenu"></activity>
         <activity android:name=".NewsActivity"></activity>
-        <activity android:name=".Schulessen"></activity>
+        <activity android:name=".Schulessen"
+            ></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
