@@ -10,6 +10,8 @@ import com.google.appinventor.components.runtime.Player;
 
 
 //TODO: Benachrichtigung mit Player, um Radio zu togglen, wenn es minimiert ist
+//TODO: Archiv implementieren
+//TODO: Progressbar bei langen Wartezeiten
 
 public class SimpleRadio extends Form implements HandlesEventDispatching {
     private Button Btn1;
@@ -17,12 +19,13 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
     private Player Player1;
     private Label Überschrift;
     private Button Archiv;
+    private static final String RadioUrl = "http://stream.radiosaw.de/stream.mp3";
 
     public void $define(){
         this.AlignHorizontal(3);
         this.BackgroundColor(0xFFF89432);
         Player1 = new Player(this);
-        Player1.Source("http://stream.radiosaw.de/stream.mp3");
+        Player1.Source(RadioUrl);
 
         Überschrift = new Label(this);
         Überschrift.Text("Schulradio");
