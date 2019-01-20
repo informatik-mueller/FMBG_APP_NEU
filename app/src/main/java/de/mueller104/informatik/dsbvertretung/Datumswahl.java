@@ -2,7 +2,6 @@ package de.mueller104.informatik.dsbvertretung;
 
 import android.content.Intent;
 import android.os.StrictMode;
-import android.util.EventLog;
 
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Component;
@@ -10,7 +9,6 @@ import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Label;
-import com.google.appinventor.components.runtime.WebViewer;
 
 import java.util.ArrayList;
 
@@ -21,7 +19,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private Button Gestern;
     private ArrayList<TimeTable> timeTables;
     private Label Space2;
-    private Label Bitte;
+    private Label Überschrift;
     private Label Hinweis;
     private final int CENTER_HORIZONTAL = 3;
 
@@ -34,9 +32,13 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
 
 
         this.AlignHorizontal(CENTER_HORIZONTAL);
-        Bitte = new Label(this);
-        Bitte.Text("Bitte wählen Sie das gewünschte Datum");
-        Bitte.HeightPercent(10);
+        this.BackgroundColor(0xFFF89432);
+        Überschrift = new Label(this);
+        Überschrift.Text("Vertretungsplan");
+        Überschrift.HeightPercent(40);
+        Überschrift.FontSize(30.0f);
+        Überschrift.FontBold(true);
+        Überschrift.TextColor(0xFF444444);
         Heute = new Button(this);
         Gestern = new Button(this);
         Space2 = new Label(this);
