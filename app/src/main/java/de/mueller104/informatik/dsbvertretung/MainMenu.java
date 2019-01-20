@@ -19,6 +19,9 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+//TODO: 'kein Internet'-Toast für betroffene Screens implemntieren
+//TODO: Progressbar für lange Wartezeiten
+
 /*TODO: es müssen noch implentiert werden:
  * Dokumente
  * Kontakt

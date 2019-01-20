@@ -24,13 +24,6 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         this.BackgroundColor(0xFFF89432);
         this.AlignHorizontal(3);
 
-        Überschrift = new Label(this);
-        Überschrift.Text("News");
-        Überschrift.HeightPercent(40);
-        Überschrift.FontSize(30.0f);
-        Überschrift.FontBold(true);
-        Überschrift.TextColor(0xFF444444);
-
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
         Nachrichten = dsbMobile.getNews();
         //Nachrichten.add(Nachrichten.get(0));

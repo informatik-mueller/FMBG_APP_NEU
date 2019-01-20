@@ -11,7 +11,6 @@ import com.google.appinventor.components.runtime.Player;
 
 //TODO: Benachrichtigung mit Player, um Radio zu togglen, wenn es minimiert ist
 //TODO: Archiv implementieren
-//TODO: Progressbar bei langen Wartezeiten
 
 public class SimpleRadio extends Form implements HandlesEventDispatching {
     private Button Btn1;
