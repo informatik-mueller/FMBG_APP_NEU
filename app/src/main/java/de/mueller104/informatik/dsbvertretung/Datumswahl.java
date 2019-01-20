@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 import de.sematre.api.dsbmobile.*;
 
+//TODO: schöner designen
+
 public class Datumswahl extends Form implements HandlesEventDispatching {
     private Button Heute;
     private Button Gestern;

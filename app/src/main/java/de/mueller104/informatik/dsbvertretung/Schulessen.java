@@ -10,6 +10,8 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 
+//TODO: Testen, ob es bedienbar ist (AccoutnCredidentials für Natürlich Essen benötigt
+
 public class Schulessen extends AppCompatActivity {
 
     private WebView webview;
