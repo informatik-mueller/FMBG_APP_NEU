@@ -19,6 +19,18 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+/*TODO: es müssen noch implentiert werden:
+ * Dokumente
+ * Kontakt
+ * Einstellungen
+ *
+ * TODO: angefangen wurden:
+ * Schulradio
+ * Kantine
+ * News
+ * Datumswahl
+ * Vertretung
+*/
 
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
