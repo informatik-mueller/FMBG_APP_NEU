@@ -192,9 +192,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                     EasterEggCounter++;
 
                 if(choice.equals("Solitär")){
-                    Intent intent = new Intent(this, Solitär.class);
-                    intent.putExtra("first_time", FirstTimeSolitär);
-                    startActivity(intent);
+                    solitär();
                 }
 
 
@@ -229,6 +227,12 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             Toast.makeText(this, "Solitär wurde aktiviert", Toast.LENGTH_SHORT).show();
             checkEasterEgg();
             FirstTimeSolitär = true;
+        }
+
+        private void solitär(){
+            Intent intent = new Intent(this, Solitär.class);
+            intent.putExtra("first_time", FirstTimeSolitär);
+            startActivity(intent);
         }
 
     }
