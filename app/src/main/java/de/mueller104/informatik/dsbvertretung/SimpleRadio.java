@@ -9,7 +9,7 @@ import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.Player;
 
 
-//TODO: Benachrichtigung mit Player, um Radio zu togglen, wenn es minimiert ist
+//(TODO: Benachrichtigung mit Player, um Radio zu togglen, wenn es minimiert ist)
 //TODO: Archiv implementieren
 
 public class SimpleRadio extends Form implements HandlesEventDispatching {

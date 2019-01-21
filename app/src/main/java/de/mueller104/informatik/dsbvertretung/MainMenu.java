@@ -193,6 +193,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 startActivity(intent);
             }
 
+        if(component.equals(DokumenteButton) && eventName.equals("Click")){
+            Intent intent = new Intent(this, Dokumente.class);
+            startActivity(intent);
+        }
+
             if(component.equals(SchulessenButton) && eventName.equals("Click")){
                 Intent intent = new Intent(this, Schulessen.class);
                 intent.putExtra("url", "https://natuerlich-kunde.com/");
