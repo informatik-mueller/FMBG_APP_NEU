@@ -55,7 +55,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
         @Override
         public void onBackPressed(){
-            if(!isEasterEgg)
+            if(!FirstTimeSolitär && )
             PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Nein", true);
             else PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Solitär", true);
         }
