@@ -1,7 +1,6 @@
-package de.mueller104.informatik.dsbvertretung;
+/*package de.mueller104.informatik.dsbvertretung;
 
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -58,3 +57,4 @@ public class VertretungViewer extends AppCompatActivity {
         webview.findAllAsync(text);
     }
 }
+*/

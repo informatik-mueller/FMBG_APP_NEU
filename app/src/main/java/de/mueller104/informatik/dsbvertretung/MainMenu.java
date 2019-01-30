@@ -189,8 +189,15 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
 
             if(component.equals(NewsButton) && eventName.equals("Click")){
-                Intent intent = new Intent(this, NewsActivity.class);
-                startActivity(intent);
+                if(netzwerkVerfügbar()){
+                    Intent intent = new Intent(this, NewsActivity.class);
+                    startActivity(intent);
+                }
+
+                else {
+                    Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
+                }
+                return true;
             }
 
         if(component.equals(DokumenteButton) && eventName.equals("Click")){
