@@ -65,6 +65,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             this.AppName("FMBG_App_Entwurf");
             this.BackgroundColor(0xFF444444);
             this.Title("Felix-Mendelssohn_Bartholdy_Gymnasium");
+            this.ScreenOrientation("portrait");
 
             checkEasterEgg();
 

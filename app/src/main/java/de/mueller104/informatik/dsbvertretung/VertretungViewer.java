@@ -1,4 +1,4 @@
-/*package de.mueller104.informatik.dsbvertretung;
+package de.mueller104.informatik.dsbvertretung;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 
-public class VertretungViewer extends AppCompatActivity {
+/*public class VertretungViewer extends AppCompatActivity {
 
     private WebView webview;
 
@@ -56,5 +56,4 @@ public class VertretungViewer extends AppCompatActivity {
         //setTitle(text);
         webview.findAllAsync(text);
     }
-}
-*/
+} */
