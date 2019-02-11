@@ -201,6 +201,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 return true;
             }
 
+            if(component.equals(KontaktButton) && eventName.equals("Click")){
+                Intent intent = new Intent(this, Kontakt.class);
+                startActivity(intent);
+            }
+
         if(component.equals(DokumenteButton) && eventName.equals("Click")){
             if(netzwerkVerfügbar()){
                 Intent intent = new Intent(this, Dokumente.class);

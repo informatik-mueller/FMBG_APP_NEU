@@ -21,12 +21,12 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     protected void $define(){
         this.Scrollable(true);
-        this.BackgroundColor(0xFFF89432);
+        //this.BackgroundColor(0xFFF89432);
         this.AlignHorizontal(3);
 
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
         Nachrichten = dsbMobile.getNews();
-        //Nachrichten.add(Nachrichten.get(0));
+        Nachrichten.add(Nachrichten.get(0));
 
         Überschrift = new Label(this);
         Überschrift.FontSize(30.0f);

@@ -22,6 +22,7 @@
         <activity android:name=".MainMenu"></activity>
         <activity android:name=".NewsActivity"></activity>
         <activity android:name=".Schulessen"></activity>
+        <activity android:name=".Kontakt"></activity>
         <activity android:name=".Solitär"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
