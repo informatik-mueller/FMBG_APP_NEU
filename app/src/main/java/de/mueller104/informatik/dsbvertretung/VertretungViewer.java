@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 
 
-/*public class VertretungViewer extends AppCompatActivity {
+public class VertretungViewer extends AppCompatActivity {
 
     private WebView webview;
 
@@ -56,4 +56,4 @@ import android.widget.SearchView;
         //setTitle(text);
         webview.findAllAsync(text);
     }
-} */
+}
