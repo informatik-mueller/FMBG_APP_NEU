@@ -24,7 +24,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 /*TODO: es müssen noch implentiert werden:
  * Dokumente
- * Kontakt
+ * LulListe
  * Einstellungen
  *
  * TODO: angefangen wurden:
@@ -199,6 +199,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                     Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
                 }
                 return true;
+            }
+
+            if(component.equals(KontaktButton) && eventName.equals("Click")){
+                Intent intent = new Intent(this, LulListe.class);
+                startActivity(intent);
             }
 
         if(component.equals(DokumenteButton) && eventName.equals("Click")){
