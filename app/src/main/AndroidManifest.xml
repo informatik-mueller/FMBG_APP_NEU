@@ -24,6 +24,7 @@
         <activity android:name=".Schulessen"></activity>
         <activity android:name=".LulListe"></activity>
         <activity android:name=".Solitär"></activity>
+        <activity android:name=".Kontakt"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
