@@ -24,7 +24,7 @@ import static android.widget.Toast.LENGTH_SHORT;
 
 /*TODO: es müssen noch implentiert werden:
  * Dokumente
- * Kontakt
+ * LulListe
  * Einstellungen
  *
  * TODO: angefangen wurden:
