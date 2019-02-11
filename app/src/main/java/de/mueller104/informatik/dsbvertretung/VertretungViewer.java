@@ -37,7 +37,10 @@ public class VertretungViewer extends AppCompatActivity {
         LinearLayout bg = findViewById(R.id.linearLayout);
         bg.setBackgroundColor(Color.WHITE);
         webview = findViewById(R.id.web);
+        webview.setInitialScale(1);
+
         WebSettings webSettings = webview.getSettings();
+        webSettings.setUseWideViewPort(true);
         webSettings.setJavaScriptEnabled(false);
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
