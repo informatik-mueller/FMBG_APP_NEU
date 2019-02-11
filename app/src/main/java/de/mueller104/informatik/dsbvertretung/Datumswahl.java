@@ -109,7 +109,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
 
             String dlLink = timeTable.getUrl();
             String titel = "Vertretungsplan für " + timeTable.getTitle().substring(0, timeTable.getTitle().length()-4);
-            Intent intent = new Intent(this, MainMenu.class);
+            Intent intent = new Intent(this, VertretungViewer.class);
             intent.putExtra("url", dlLink);
             intent.putExtra("titel", titel);
             startActivity(intent);

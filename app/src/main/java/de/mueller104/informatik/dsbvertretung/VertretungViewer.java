@@ -28,6 +28,7 @@ public class VertretungViewer extends AppCompatActivity {
         }
     };
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
