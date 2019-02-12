@@ -62,6 +62,7 @@ public class Login extends Form implements HandlesEventDispatching {
         getWindow().setSoftInputMode(2); //Autofokus ausschalten
 
         this.AlignHorizontal(3);
+        this.ScreenOrientation("portrait");
         this.BackgroundColor(0xFF444444);
 
 

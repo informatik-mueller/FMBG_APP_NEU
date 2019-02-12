@@ -23,7 +23,6 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private Label Space2;
     private Label Überschrift;
     private Label ÜberschriftSpace;
-    private Label Hinweis;
     private Label KeineLabel;
     private final int CENTER_HORIZONTAL = 3;
     private String DateinameGestern;
@@ -41,6 +40,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
 
 
         this.AlignHorizontal(CENTER_HORIZONTAL);
+        this.ScreenOrientation("portrait");
         this.BackgroundColor(0xFFF89432);
         ÜberschriftSpace = new Label(this);
         ÜberschriftSpace.HeightPercent(2);

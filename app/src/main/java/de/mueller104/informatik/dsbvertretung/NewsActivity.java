@@ -27,6 +27,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     protected void $define() {
         this.Scrollable(true);
+        this.ScreenOrientation("portrait");
         //this.BackgroundColor(0xFFF89432);
         this.AlignHorizontal(3);
 
