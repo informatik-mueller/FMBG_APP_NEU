@@ -22,8 +22,9 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
     private ArrayList<News> Nachrichten;
     private Label Überschrift; //Java unterstützt Umlaute
     private final static float FONT_SIZE = 15.0f;
+    private List<String> AlternativeNews = new ArrayList<>();
 
-    protected void $define(){
+    protected void $define() {
         this.Scrollable(true);
         //this.BackgroundColor(0xFFF89432);
         this.AlignHorizontal(3);
@@ -38,16 +39,14 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         Überschrift.Text("News");
         Überschrift.TextColor(0xFF444444);
 
-        for(int i = 1; i < Nachrichten.size(); i++){
-            if(Nachrichten.get(i-1).getHeadLine() == Nachrichten.get(i-1).getHeadLine() ||
-               Nachrichten.get(i-1).getWholeMessage() == Nachrichten.get(i-1).getWholeMessage()){
+        for (int i = 1; i < Nachrichten.size(); i++) {
+            if (Nachrichten.get(i - 1).getHeadLine() == Nachrichten.get(i - 1).getHeadLine() ||
+                    Nachrichten.get(i - 1).getWholeMessage() == Nachrichten.get(i - 1).getWholeMessage()) {
                 Nachrichten.remove(i);
             }
         }
 
-        obsoleteZeilenFiltern();
-
-        for(int i = 0; i < Nachrichten.size(); i++){
+        for (int i = 0; i < Nachrichten.size(); i++) {
             VerticalArrangement v = new VerticalArrangement(this);
             Label Space = new Label(v);
             Space.HeightPercent(3);
@@ -55,7 +54,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
             HorizontalArrangement h2 = new HorizontalArrangement(v);
             HorizontalArrangement h3 = new HorizontalArrangement(v);
             News nachricht = Nachrichten.get(i);
-            Label Titel = new  Label(h1);
+            Label Titel = new Label(h1);
             Titel.Text("Titel: ");
             Titel.FontBold(true);
             Titel.TextColor(0xFF444444);
@@ -76,8 +75,9 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
             Label MitteilungWert = new Label(h3);
             MitteilungWert.TextColor(0xFF444444);
             String MitteilungHTML = nachricht.getWholeMessage();
-            MitteilungWert.Text(StringEscapeUtils.unescapeHtml4(MitteilungHTML));
-            if(i<Nachrichten.size()-1){
+            MitteilungWert.Text(ZeilenLöschen(StringEscapeUtils.unescapeHtml4(MitteilungHTML), 1));
+
+            if (i < Nachrichten.size() - 1) {
                 Button line = new Button(v);
                 line.BackgroundColor(0xFF444444);
                 line.Width(Component.LENGTH_FILL_PARENT);
@@ -91,30 +91,18 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     }
 
-    private void obsoleteZeilenFiltern() {
-        List <String> wörter = new ArrayList<>();
-        wörter.add("false");
-        wörter.add("X-NONE");
+    private static String ZeilenLöschen(String msg, int anzahl) {
+        String zeilen[] = msg.split("[\\r\\n]+"); //regex
 
-        for(int i = 0; i< Nachrichten.size(); i++){
-            String msg = Nachrichten.get(i).getWholeMessage();
-            List<String> zeilen = Arrays.asList(msg.split("[\\r\\n]+")); //regex
-            for (String wort : wörter){
-                for(int j = 0; i<zeilen.size(); i++){
-                    if(zeilen.get(i).indexOf(wort) >= 0){
-                        try{
-                        zeilen.remove(i);
-                            }
-                        catch(Exception e){
-                            System.err.println("Filterung hat nicht geklappt");
-                            e.printStackTrace();
-                        }
-                        }
-                }
-            }
-           String gefilterteMsg = StringUtils.join(zeilen);
-            //TODO: Absturz dieser Funktionalität verhindern
-            //Nachrichten.get(i).setWholeMessage(gefilterteMsg);
+        try {
+            zeilen = Arrays.copyOf(zeilen, zeilen.length - anzahl);
+        } catch (Exception e) {
+            System.err.println("Konnte Array-Kopie nicht modifizieren");
+            e.printStackTrace();
         }
+
+        return StringUtils.join(zeilen, "\n");
     }
+
 }
+
