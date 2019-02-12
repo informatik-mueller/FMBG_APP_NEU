@@ -1,5 +1,7 @@
 package de.mueller104.informatik.dsbvertretung;
 
+import android.widget.ProgressBar;
+
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.EventDispatcher;
@@ -26,6 +28,8 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
     private HorizontalArrangement HorizontalArrangement1;
     private Image Logo;
     private HorizontalArrangement HorizontalArrangement2;
+    private ProgressBar progressBar;
+    private boolean isPlaying = false;
     private static final String RadioUrl = "http://stream.radiosaw.de/stream.mp3";
 
     public void $define(){
@@ -34,11 +38,11 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
         this.Title("Schulradio");
 
         Player1 = new Player(this);
-        Player1.Source(RadioUrl);
 
         VerticalArrangement1 = new VerticalArrangement(this);
         VerticalArrangement1.AlignHorizontal(3);
         //VerticalArrangement1.BackgroundColor(0xFF444444);
+        progressBar = new ProgressBar(this);
         VerticalArrangement1.BackgroundColor(0xFFF89432);
         VerticalArrangement1.Height(-1100);
         VerticalArrangement1.Width(-1100);
@@ -74,15 +78,20 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
     @Override
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] args) {
         if(component.equals(Abspielen) && eventName.equals("Click")){
-            if (Player1.playerState == Player.State.PLAYING){
+
+            if (isPlaying){
+                isPlaying = false;
                 Abspielen.Text("Abspielen");
                 Player1.Pause();
+                return true;
             }
-            else{
+                Player1.Source(RadioUrl);
+                isPlaying = true;
                 Abspielen.Text("Pausieren");
                 Player1.Start();
-            }
-            return true;
+                return true;
+
+
         }
         return false;
     }

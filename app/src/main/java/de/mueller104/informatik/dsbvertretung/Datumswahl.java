@@ -54,6 +54,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         Überschrift.FontBold(true);
         KeineLabel = new Label(this);
         KeineLabel.FontSize(18.0f);
+        KeineLabel.Visible(false);
         Überschrift.TextColor(0xFF444444);
         Heute = new Button(this);
         Heute.FontSize(FONT_SIZE);
@@ -91,6 +92,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
             }
             else {
                 Gestern.Visible(false);
+                KeineLabel.Visible(true);
                 KeineLabel.Text("Es gibt zurzeit keine Vertretungspläne");
             }
 
