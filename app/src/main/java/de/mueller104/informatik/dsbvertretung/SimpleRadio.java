@@ -47,8 +47,8 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
         VerticalArrangement1.AlignHorizontal(3);
         //VerticalArrangement1.BackgroundColor(0xFF444444);
         VerticalArrangement1.BackgroundColor(0xFFF89432);
-        VerticalArrangement1.Height(-1100);
-        VerticalArrangement1.Width(-1100);
+        VerticalArrangement1.Height(-1095);
+        VerticalArrangement1.Width(-1095);
         ÜberschriftSpace = new Label(VerticalArrangement1);
         ÜberschriftSpace.HeightPercent(3);
         Überschrift = new Label(VerticalArrangement1);
