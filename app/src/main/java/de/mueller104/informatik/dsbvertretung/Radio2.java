@@ -140,7 +140,8 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         }
 
         if(component.equals(PausePlayImage) && eventName.equals("Flung")){
-            PausePlayImage.Speed((float)params[2]*3);
+           // Überschrift.Text(String.valueOf((float)params[2]));
+            //PausePlayImage.X(PausePlayImage.X()-(float)params[0]);
             //PausePlayImage.
         }
 
