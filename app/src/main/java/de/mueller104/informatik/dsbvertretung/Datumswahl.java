@@ -81,10 +81,10 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         try{
             if(timeTables.size() > 0){
                  DatumGestern = DateinameGestern.substring(0, DateinameGestern.length()-4);
-                 if(DatumGestern.equals(DatumEchtGestern))
-                     DatumGestern += " (gestern)";
-                 if(DatumGestern.equals(DatumEchtHeute))
-                     DatumGestern += " (heute)";
+                if(DatumGestern.equals(DatumEchtGestern))
+                    DatumGestern = "Gestern: " + DatumHeute;
+                if(DatumGestern.equals(DatumEchtHeute))
+                    DatumGestern = "Heute: " + DatumHeute;
                 Gestern.Text(DatumGestern);
             }
             else{
@@ -96,10 +96,9 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
             if(timeTables.size() > 1){
                 DatumHeute = DateinameHeute.substring(0, DateinameHeute.length()-4);
                 if(DatumHeute.equals(DatumEchtGestern))
-                    DatumHeute += " (gestern)";
+                    DatumHeute = "Gestern: " + DatumHeute;
                 if(DatumHeute.equals(DatumEchtHeute))
-                    DatumHeute += " (heute)";
-                Gestern.Text(DatumGestern);
+                    DatumHeute = "Heute: " + DatumHeute;
                 Heute.Text(DatumHeute);
             }
             else{
