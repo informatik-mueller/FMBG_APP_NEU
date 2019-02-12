@@ -179,7 +179,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
             if(component.equals(RadioButton) && eventName.equals("Click")){
                 if(netzwerkVerfügbar()){
-                    Intent intent = new Intent(this, SimpleRadio.class);
+                    Intent intent = new Intent(this, Radio2.class);
                     startActivity(intent);
                 }
 
