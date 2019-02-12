@@ -24,9 +24,8 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
     private Button Abspielen;
     private VerticalArrangement VerticalArrangement1;
     private HorizontalArrangement HorizontalArrangement1;
-    private HorizontalArrangement HorizontalArrangement2;
     private Image Logo;
-    private HorizontalArrangement HorizontalArrangement3;
+    private HorizontalArrangement HorizontalArrangement2;
     private static final String RadioUrl = "http://stream.radiosaw.de/stream.mp3";
 
     public void $define(){
@@ -43,35 +42,30 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
         VerticalArrangement1.BackgroundColor(0xFFF89432);
         VerticalArrangement1.Height(-1100);
         VerticalArrangement1.Width(-1100);
-        HorizontalArrangement1 = new HorizontalArrangement(VerticalArrangement1);
-        HorizontalArrangement1.AlignHorizontal(3);
-        HorizontalArrangement1.BackgroundColor(0x00FFFFFF);
-        HorizontalArrangement1.Height(-1020);
-        HorizontalArrangement1.Width(-1100);
-        ÜberschriftSpace = new Label(HorizontalArrangement1);
-        ÜberschriftSpace.HeightPercent(80);
-        Überschrift = new Label(HorizontalArrangement1);
+        ÜberschriftSpace = new Label(VerticalArrangement1);
+        ÜberschriftSpace.HeightPercent(5);
+        Überschrift = new Label(VerticalArrangement1);
         Überschrift.Text("Schulradio");
-        Überschrift.HeightPercent(35);
+        Überschrift.HeightPercent(15);
         Überschrift.FontSize(30.0f);
         Überschrift.FontBold(true);
         Überschrift.TextColor(0xFF444444);
-        HorizontalArrangement2 = new HorizontalArrangement(VerticalArrangement1);
-        HorizontalArrangement2.AlignHorizontal(3);
-        HorizontalArrangement2.AlignVertical(2);
-        //HorizontalArrangement2.BackgroundColor(0xFF888888);
-        HorizontalArrangement2.Height(-1050);
-        HorizontalArrangement2.Width(-1100);
-        Logo = new Image(HorizontalArrangement2);
+        HorizontalArrangement1 = new HorizontalArrangement(VerticalArrangement1);
+        HorizontalArrangement1.AlignHorizontal(3);
+        HorizontalArrangement1.AlignVertical(2);
+        //HorizontalArrangement1.BackgroundColor(0xFF888888);
+        HorizontalArrangement1.Height(-1050);
+        HorizontalArrangement1.Width(-1100);
+        Logo = new Image(HorizontalArrangement1);
         Logo.Picture("fmbg-logo-3.png");
         Logo.ScalePictureToFit(true);
-        HorizontalArrangement3 = new HorizontalArrangement(VerticalArrangement1);
-        Space1 = new Label(HorizontalArrangement3);
+        HorizontalArrangement2 = new HorizontalArrangement(VerticalArrangement1);
+        Space1 = new Label(HorizontalArrangement2);
         Space1.HeightPercent(3);
-        Abspielen = new Button(HorizontalArrangement3);
+        Abspielen = new Button(HorizontalArrangement2);
         Abspielen.Text("Abspielen");
         Abspielen.FontSize(30);
-        Archiv = new Button(HorizontalArrangement3);
+        Archiv = new Button(HorizontalArrangement2);
         Archiv.Text("Archiv");
         Archiv.FontSize(30);
         EventDispatcher.registerEventForDelegation( this, "1", "Click" );
@@ -79,7 +73,7 @@ public class SimpleRadio extends Form implements HandlesEventDispatching {
 
     @Override
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] args) {
-        if(component.equals(Logo) && eventName.equals("Click")){
+        if(component.equals(Abspielen) && eventName.equals("Click")){
             if (Player1.playerState == Player.State.PLAYING){
                 Abspielen.Text("Abspielen");
                 Player1.Pause();
