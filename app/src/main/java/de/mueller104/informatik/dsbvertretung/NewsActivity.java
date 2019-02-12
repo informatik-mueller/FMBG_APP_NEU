@@ -21,7 +21,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     private ArrayList<News> Nachrichten;
     private Label Überschrift; //Java unterstützt Umlaute
-    private final static float FONT_SIZE = 15.0f;
+    private final static float FONT_SIZE = 14.0f;
     private List<String> AlternativeNews = new ArrayList<>();
 
     protected void $define() {
@@ -48,6 +48,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
         for (int i = 0; i < Nachrichten.size(); i++) {
             VerticalArrangement v = new VerticalArrangement(this);
+            v.WidthPercent(95);
             Label Space = new Label(v);
             Space.HeightPercent(3);
             HorizontalArrangement h1 = new HorizontalArrangement(v);
@@ -56,23 +57,29 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
             News nachricht = Nachrichten.get(i);
             Label Titel = new Label(h1);
             Titel.Text("Titel: ");
+            Titel.FontSize(FONT_SIZE);
             Titel.FontBold(true);
             Titel.TextColor(0xFF444444);
             Label TitelWert = new Label(h1);
             TitelWert.Text(nachricht.getHeadLine());
+            TitelWert.FontSize(FONT_SIZE);
             TitelWert.TextColor(0xFF444444);
             Label Datum = new Label(h2);
             Datum.Text("Datum: ");
+            Datum.FontSize(FONT_SIZE);
             Datum.FontBold(true);
             Datum.TextColor(0xFF444444);
             Label DatumWert = new Label(h2);
             DatumWert.Text(nachricht.getDate());
+            DatumWert.FontSize(FONT_SIZE);
             DatumWert.TextColor(0xFF444444);
             Label Mitteilung = new Label(h3);
             Mitteilung.Text("Mitteilung: ");
+            Mitteilung.FontSize(FONT_SIZE);
             Mitteilung.FontBold(true);
             Mitteilung.TextColor(0xFF444444);
             Label MitteilungWert = new Label(h3);
+            MitteilungWert.FontSize(FONT_SIZE);
             MitteilungWert.TextColor(0xFF444444);
             String MitteilungHTML = nachricht.getWholeMessage();
             MitteilungWert.Text(ZeilenLöschen(StringEscapeUtils.unescapeHtml4(MitteilungHTML), 1));
