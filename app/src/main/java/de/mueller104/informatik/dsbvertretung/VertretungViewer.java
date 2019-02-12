@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.ViewTreeObserver;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.LinearLayout;
@@ -37,10 +38,10 @@ public class VertretungViewer extends AppCompatActivity {
         LinearLayout bg = findViewById(R.id.linearLayout);
         bg.setBackgroundColor(Color.WHITE);
         webview = findViewById(R.id.web);
-        webview.setInitialScale(1);
+        webview.setInitialScale(130);
 
         WebSettings webSettings = webview.getSettings();
-        webSettings.setUseWideViewPort(true);
+        webSettings.setUseWideViewPort(false);
         webSettings.setJavaScriptEnabled(false);
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);

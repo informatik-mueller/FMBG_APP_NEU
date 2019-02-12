@@ -22,6 +22,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private ArrayList<TimeTable> timeTables;
     private Label Space2;
     private Label Überschrift;
+    private Label ÜberschriftSpace;
     private Label Hinweis;
     private Label KeineLabel;
     private final int CENTER_HORIZONTAL = 3;
@@ -29,6 +30,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private String DateinameHeute;
     private String DatumGestern;
     private String DatumHeute;
+    private static float FONT_SIZE = 25.0f;
 
 
     protected void $define(){
@@ -40,20 +42,20 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
 
         this.AlignHorizontal(CENTER_HORIZONTAL);
         this.BackgroundColor(0xFFF89432);
+        ÜberschriftSpace = new Label(this);
+        ÜberschriftSpace.HeightPercent(2);
         Überschrift = new Label(this);
         Überschrift.Text("Vertretungsplan");
-        Überschrift.HeightPercent(40);
+        Überschrift.HeightPercent(35);
         Überschrift.FontSize(30.0f);
         Überschrift.FontBold(true);
         Überschrift.TextColor(0xFF444444);
         Heute = new Button(this);
+        Heute.FontSize(FONT_SIZE);
         Gestern = new Button(this);
+        Gestern.FontSize(FONT_SIZE);
         Space2 = new Label(this);
         Space2.HeightPercent(60);
-        Hinweis = new Label(this);
-        Hinweis.TextColor(Label.COLOR_RED);
-
-        Hinweis.Text("");
 
         try{
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");

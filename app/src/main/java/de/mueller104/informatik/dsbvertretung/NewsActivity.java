@@ -21,6 +21,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     private ArrayList<News> Nachrichten;
     private Label Überschrift; //Java unterstützt Umlaute
+    private Label ÜberschriftSpace;
     private final static float FONT_SIZE = 14.0f;
     private List<String> AlternativeNews = new ArrayList<>();
 
@@ -33,6 +34,8 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         Nachrichten = dsbMobile.getNews();
         Nachrichten.add(Nachrichten.get(0));
 
+        ÜberschriftSpace = new Label(this);
+        ÜberschriftSpace.HeightPercent(2);
         Überschrift = new Label(this);
         Überschrift.FontSize(30.0f);
         Überschrift.FontBold(true);
