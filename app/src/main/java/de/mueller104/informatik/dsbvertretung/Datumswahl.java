@@ -52,6 +52,8 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         Überschrift.HeightPercent(35);
         Überschrift.FontSize(30.0f);
         Überschrift.FontBold(true);
+        KeineLabel = new Label(this);
+        KeineLabel.FontSize(18.0f);
         Überschrift.TextColor(0xFF444444);
         Heute = new Button(this);
         Heute.FontSize(FONT_SIZE);
@@ -82,14 +84,13 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
             if(timeTables.size() > 0){
                  DatumGestern = DateinameGestern.substring(0, DateinameGestern.length()-4);
                 if(DatumGestern.equals(DatumEchtGestern))
-                    DatumGestern = "Gestern: " + DatumHeute;
+                    DatumGestern = "Gestern: " + DatumGestern;
                 if(DatumGestern.equals(DatumEchtHeute))
-                    DatumGestern = "Heute: " + DatumHeute;
+                    DatumGestern = "Heute: " + DatumGestern;
                 Gestern.Text(DatumGestern);
             }
-            else{
+            else {
                 Gestern.Visible(false);
-                KeineLabel = new Label(this);
                 KeineLabel.Text("Es gibt zurzeit keine Vertretungspläne");
             }
 
