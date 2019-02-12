@@ -1,4 +1,5 @@
 package de.mueller104.informatik.dsbvertretung;
+import org.apache.commons.lang3.StringUtils;
 
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Component;
@@ -11,6 +12,8 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import de.sematre.api.dsbmobile.*;
 
@@ -18,6 +21,7 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
 
     private ArrayList<News> Nachrichten;
     private Label Überschrift; //Java unterstützt Umlaute
+    private final static float FONT_SIZE = 15.0f;
 
     protected void $define(){
         this.Scrollable(true);
@@ -33,6 +37,15 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         Überschrift.FontBold(true);
         Überschrift.Text("News");
         Überschrift.TextColor(0xFF444444);
+
+        for(int i = 1; i < Nachrichten.size(); i++){
+            if(Nachrichten.get(i-1).getHeadLine() == Nachrichten.get(i-1).getHeadLine() ||
+               Nachrichten.get(i-1).getWholeMessage() == Nachrichten.get(i-1).getWholeMessage()){
+                Nachrichten.remove(i);
+            }
+        }
+
+        obsoleteZeilenFiltern();
 
         for(int i = 0; i < Nachrichten.size(); i++){
             VerticalArrangement v = new VerticalArrangement(this);
@@ -76,5 +89,32 @@ public class NewsActivity extends Form implements HandlesEventDispatching {
         }
 
 
+    }
+
+    private void obsoleteZeilenFiltern() {
+        List <String> wörter = new ArrayList<>();
+        wörter.add("false");
+        wörter.add("X-NONE");
+
+        for(int i = 0; i< Nachrichten.size(); i++){
+            String msg = Nachrichten.get(i).getWholeMessage();
+            List<String> zeilen = Arrays.asList(msg.split("[\\r\\n]+")); //regex
+            for (String wort : wörter){
+                for(int j = 0; i<zeilen.size(); i++){
+                    if(zeilen.get(i).indexOf(wort) >= 0){
+                        try{
+                        zeilen.remove(i);
+                            }
+                        catch(Exception e){
+                            System.err.println("Filterung hat nicht geklappt");
+                            e.printStackTrace();
+                        }
+                        }
+                }
+            }
+           String gefilterteMsg = StringUtils.join(zeilen);
+            //TODO: Absturz dieser Funktionalität verhindern
+            //Nachrichten.get(i).setWholeMessage(gefilterteMsg);
+        }
     }
 }
