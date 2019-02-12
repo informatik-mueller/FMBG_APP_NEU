@@ -1,6 +1,7 @@
 package de.mueller104.informatik.dsbvertretung;
 
 import android.content.Intent;
+import java.text.SimpleDateFormat;
 import android.os.StrictMode;
 
 import com.google.appinventor.components.runtime.Button;
@@ -11,10 +12,11 @@ import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Label;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import de.sematre.api.dsbmobile.*;
 
-//TODO: schöner designen
 
 public class Datumswahl extends Form implements HandlesEventDispatching {
     private Button Heute;
@@ -29,6 +31,7 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     private String DateinameHeute;
     private String DatumGestern;
     private String DatumHeute;
+    private Label ButtonSpace;
     private static float FONT_SIZE = 25.0f;
 
 
@@ -52,10 +55,17 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         Überschrift.TextColor(0xFF444444);
         Heute = new Button(this);
         Heute.FontSize(FONT_SIZE);
+        ButtonSpace = new Label(this);
+        ButtonSpace.HeightPercent(5);
         Gestern = new Button(this);
         Gestern.FontSize(FONT_SIZE);
         Space2 = new Label(this);
         Space2.HeightPercent(60);
+
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE, - 1);
+        String DatumEchtGestern = new SimpleDateFormat("dd.MM.yyyy").format(cal.getTime());
+        String DatumEchtHeute = new SimpleDateFormat("dd.MM.yyyy").format(new Date());
 
         try{
         DSBMobile dsbMobile = new DSBMobile("168442", "schule");
@@ -71,6 +81,10 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         try{
             if(timeTables.size() > 0){
                  DatumGestern = DateinameGestern.substring(0, DateinameGestern.length()-4);
+                 if(DatumGestern.equals(DatumEchtGestern))
+                     DatumGestern += " (gestern)";
+                 if(DatumGestern.equals(DatumEchtHeute))
+                     DatumGestern += " (heute)";
                 Gestern.Text(DatumGestern);
             }
             else{
@@ -81,6 +95,11 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
 
             if(timeTables.size() > 1){
                 DatumHeute = DateinameHeute.substring(0, DateinameHeute.length()-4);
+                if(DatumHeute.equals(DatumEchtGestern))
+                    DatumHeute += " (gestern)";
+                if(DatumHeute.equals(DatumEchtHeute))
+                    DatumHeute += " (heute)";
+                Gestern.Text(DatumGestern);
                 Heute.Text(DatumHeute);
             }
             else{
