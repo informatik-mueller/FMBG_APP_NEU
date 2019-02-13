@@ -92,7 +92,6 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
         DatumEchtMorgen = format.format(cal.getTime());
         cal.add(Calendar.DATE, 1);
         DatumEchtÜbermorgen = format.format(cal.getTime());
-        Überschrift.Text(DatumEchtÜbermorgen);
         EventDispatcher.registerEventForDelegation(this, "qc", "Click");
         EventDispatcher.registerEventForDelegation(this, "id", "Timer");
     }
@@ -101,18 +100,20 @@ public class Datumswahl extends Form implements HandlesEventDispatching {
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] args) {
         if(eventName.equals("Click")){
             TimeTable timeTable;
+            String titel = "Vertretungsplan für ";
 
             if(component.equals(Gestern)){
                 timeTable = timeTables.get(0);
+                titel += DatumGestern.split(": ")[1];
             }
 
             else if(component.equals(Heute)){
                 timeTable = timeTables.get(1);
+                titel += DatumHeute.split(": ")[1];
             }
             else return true;
 
             String dlLink = timeTable.getUrl();
-            String titel = "Vertretungsplan für " + timeTable.getTitle().substring(0, timeTable.getTitle().length()-4);
             Intent intent = new Intent(this, VertretungViewer.class);
             intent.putExtra("url", dlLink);
             intent.putExtra("titel", titel);
