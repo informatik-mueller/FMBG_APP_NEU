@@ -4,11 +4,13 @@ import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.TableArrangement;
-import org.apache.commons.
+import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPClientConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Scanner;
 
 //TODO: Download aus dem Internet
 
@@ -18,6 +20,8 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private Label Csv2;
     private Reader br;
     private String k;
+    private static final String FtpServerUrl = "test.rebex.net";
+    private FTPClient client;
 
     protected void $define(){
         List = new TableArrangement(this);
@@ -35,20 +39,21 @@ public class LulListe extends Form implements HandlesEventDispatching {
 
 
         try{
-        InputStream raw = this.getAssets().open("lehrer.csv");
-        k = convertStreamToString(raw);
+            client = new FTPClient();
+            client.connect(FtpServerUrl);
+            Csv.Text(client.getReplyString());
+            InputStream raw = this.getAssets().open("lehrer.csv");
+            Scanner scanner = new java.util.Scanner(raw).useDelimiter("\\A");
+            if(scanner.hasNext())
+                k = scanner.next();
+            else k = "";
         }
         catch(IOException e){
             System.err.println("lehrer.csv konnte nicht gelesen werden");
             e.printStackTrace();
         }
-        Csv.Text(k);
+        //Csv.Text(k);
         Csv2.Text(k);
 
-    }
-
-    public static String convertStreamToString(java.io.InputStream is) {
-        java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");
-        return s.hasNext() ? s.next() : "";
     }
 }
