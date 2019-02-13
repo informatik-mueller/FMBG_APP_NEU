@@ -115,7 +115,6 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         EventDispatcher.registerEventForDelegation(this, "yeah", "Click");
         EventDispatcher.registerEventForDelegation(this, "yeah2", "Touched");
         EventDispatcher.registerEventForDelegation(this, "yeah3", "Timer");
-        EventDispatcher.registerEventForDelegation(this, "yeah3", "Flung");
     }
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
         if(component.equals(PausePlayImage) && eventName.equals("Touched")){
@@ -138,13 +137,6 @@ public class Radio2 extends Form implements HandlesEventDispatching {
                 Player1.Start();
                 return true;
         }
-
-        if(component.equals(PausePlayImage) && eventName.equals("Flung")){
-           // Überschrift.Text(String.valueOf((float)params[2]));
-            //PausePlayImage.X(PausePlayImage.X()-(float)params[0]);
-            //PausePlayImage.
-        }
-
 
 
         int i = 0; for(Button button : buttonList){

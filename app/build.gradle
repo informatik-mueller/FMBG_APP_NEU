@@ -29,4 +29,5 @@ dependencies {
     implementation files('libs/gson-2.6.2.jar')
     implementation files('libs/commons-lang3-3.8.1.jar')
     implementation files('libs/AppInventor-JavaLibrary.jar')
+    implementation files('libs/commons-net-3.6.jar')
 }
