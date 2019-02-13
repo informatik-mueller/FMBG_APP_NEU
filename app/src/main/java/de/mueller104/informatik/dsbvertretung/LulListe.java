@@ -6,6 +6,8 @@ import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.TableArrangement;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPClientConfig;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPReply;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,7 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private String k;
     private static final String FtpServerUrl = "test.rebex.net";
     private FTPClient client;
+    private FTPFile[] files;
 
     protected void $define(){
         List = new TableArrangement(this);
@@ -41,7 +44,11 @@ public class LulListe extends Form implements HandlesEventDispatching {
         try{
             client = new FTPClient();
             client.connect(FtpServerUrl);
-            Csv.Text(client.getReplyString());
+                 if(FTPReply.isPositiveCompletion(client.getReplyCode())){
+                    files = client.listFiles("/");
+                    Csv.Text(files[0].getName());
+                 }
+
             InputStream raw = this.getAssets().open("lehrer.csv");
             Scanner scanner = new java.util.Scanner(raw).useDelimiter("\\A");
             if(scanner.hasNext())

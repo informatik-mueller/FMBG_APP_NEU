@@ -56,7 +56,7 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         availableNames.add("Radio Sachsen-Anhalt-Welle");
         RadioUrl = availableUrls.get(0);
         timer = new Clock(this);
-        timer.TimerInterval(500);
+        timer.TimerInterval(40);
         timer.TimerEnabled(true);
 
         Display display = getWindowManager().getDefaultDisplay();
@@ -87,7 +87,7 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         container.Width(-1100);
         container.BackgroundColor(0xFFEA7D12);
         PausePlayImage = new ImageSprite(container);
-        PausePlayImage.Picture("play_small.png");;
+        PausePlayImage.Picture("play_small.png");
         PausePlayImage.X(size.x/8.5f);
         PausePlayImage.Y(size.y/20.0f);
         VerticalArrangement2 = new VerticalArrangement(VerticalArrangement1);
