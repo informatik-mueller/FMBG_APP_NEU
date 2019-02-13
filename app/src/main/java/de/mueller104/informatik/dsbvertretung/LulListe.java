@@ -22,9 +22,10 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private Label Csv2;
     private Reader br;
     private String k;
-    private static final String FtpServerUrl = "test.rebex.net";
+    private static final String FtpServerUrl = "leobraguinski.bplaced.net";
     private FTPClient client;
     private FTPFile[] files;
+    private static final String lulUrl = "/lulUrl";
 
     protected void $define(){
         List = new TableArrangement(this);
@@ -44,9 +45,12 @@ public class LulListe extends Form implements HandlesEventDispatching {
         try{
             client = new FTPClient();
             client.connect(FtpServerUrl);
-                 if(FTPReply.isPositiveCompletion(client.getReplyCode())){
-                    files = client.listFiles("/");
-                    Csv.Text(files[0].getName());
+                 if(!FTPReply.isPositiveCompletion(client.getReplyCode())){
+                     System.err.println("Etwas ist schief gelaufen..");
+                 }
+                 boolean success = client.login("leobraguinski", "blabla");
+                 if(success){
+                     Csv.Text(client.listFiles("/")[2].getName());
                  }
 
             InputStream raw = this.getAssets().open("lehrer.csv");
