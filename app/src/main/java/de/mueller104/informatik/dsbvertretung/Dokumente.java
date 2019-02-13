@@ -9,6 +9,7 @@ import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
+import org.apache.commons.net.ftp.FTPClient;
 
 public class Dokumente extends Form implements HandlesEventDispatching {
 
