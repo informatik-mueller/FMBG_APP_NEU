@@ -24,34 +24,29 @@ import java.util.Scanner;
 public class LulListe extends Form implements HandlesEventDispatching {
     private TableArrangement List;
     private Clock Timer1;
-    private Label Csv;
     private Label Csv2;
     private FTPClient client;
     private List<String> fileNames;
     private String CsvTable;
 
     private static final String FtpServerUrl = "leobraguinski.bplaced.net";
-    private static final String FtpBenutzer = "leonardobraguinski";
+    private static final String FtpBenutzer = "leobraguinski";
     private static final String FtpPasswort = "blabla";
     private static final String DateiName = "lehrer.csv";
     private static final String DateiPfad = "/lulListe";
 
-    protected void $define(){
+    public void $define(){
+        this.ScreenOrientation("portrait");
+
         Timer1 = new Clock(this);
-        Timer1.TimerInterval(50);
+        Timer1.TimerInterval(100);
         Timer1.TimerEnabled(true);
         List = new TableArrangement(this);
         List.WidthPercent(100);
         List.HeightPercent(100);
         List.Columns(2);
         List.Rows(20);
-        Csv = new Label(List);
-        Csv2 = new Label(List);
-        Csv.Row(0);
-        Csv.Column(0);
-        Csv.TextAlignment(Label.ALIGNMENT_CENTER);
-        Csv2.Row(0);
-        Csv2.Column(1);
+
         EventDispatcher.registerEventForDelegation(this, "ok", "Timer");
     }
 
@@ -59,9 +54,11 @@ public class LulListe extends Form implements HandlesEventDispatching {
         if(component.equals(Timer1) && eventName.equals("Timer")){
             CsvTable = retrieveFTP();
             Timer1.TimerEnabled(false);
-            Csv2.Text(CsvTable);
+            //Csv2.Text(CsvTable);
+
             return true;
         }
+
         return false;
     }
 
@@ -73,9 +70,12 @@ public class LulListe extends Form implements HandlesEventDispatching {
             client.connect(FtpServerUrl);
             if(!FTPReply.isPositiveCompletion(client.getReplyCode())){
                 System.err.println("Etwas ist schief gelaufen..");
+                return "";
             }
+
             boolean success = client.login(FtpBenutzer, FtpPasswort);
             if(success) {
+                //client.changeWorkingDirectory(DateiPfad);
                 FTPFile[] files = client.listFiles();
                 fileNames = new ArrayList<>();
                 for (FTPFile file : files) {
