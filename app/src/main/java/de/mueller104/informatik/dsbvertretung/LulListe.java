@@ -1,5 +1,7 @@
 package de.mueller104.informatik.dsbvertretung;
 
+import android.widget.Toast;
+
 import com.google.appinventor.components.runtime.Clock;
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.EventDispatcher;
@@ -10,6 +12,7 @@ import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.appinventor.components.runtime.VerticalScrollArrangement;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -41,7 +44,8 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private static final String FtpBenutzer = "web27549934f2";
     private static final String FtpPasswort = "OgXgPAAcT8ez0JaVsOU0NzfgSoplqlUy";
     private static final String DateiName = "lehrer.csv";
-    private static final String DateiPfad = "/";
+    //private static final String DateiPfad = "/var/www/web27549934/html/appdata\";
+    private static final String DateiPfad = "/appdata";
     private static final int AnzahlElemente = 50;
 
     public void $define(){
@@ -104,15 +108,34 @@ public class LulListe extends Form implements HandlesEventDispatching {
         if(component.equals(Timer1) && eventName.equals("Timer")){
             CsvTable = retrieveFTP();
             Timer1.TimerEnabled(false);
-            for(int i = 1; i<20+1; i++){
+            String[] SplitTable = CsvTable.split(";");
+            VerticalArrangement vTemp1 = new VerticalArrangement(Table);
+            vTemp1.AlignHorizontal(3);
+            vTemp1.WidthPercent(50);
+            vTemp1.Column(0);
+            vTemp1.Row(1);
+
+            Label temp = new Label(vTemp1);
+            temp.Text(CsvTable);
+
+            VerticalArrangement vTemp2 = new VerticalArrangement(Table);
+            vTemp1.AlignHorizontal(3);
+            vTemp1.WidthPercent(50);
+            vTemp1.Column(1);
+            vTemp1.Row(1);
+
+            Label temp2 = new Label(vTemp2);
+            temp2.Text(StringUtils.join(SplitTable, "  "));
+
+         /* for(int i = 1; i<SplitTable.length; i+=2){
                 VerticalArrangement vTemp1 = new VerticalArrangement(Table);
                 vTemp1.AlignHorizontal(3);
                 vTemp1.WidthPercent(50);
                 vTemp1.Column(0);
-                vTemp1.Row(i);
+                vTemp1.Row(i-1);
 
                 Label temp = new Label(vTemp1);
-                temp.Text("Lehrer");
+                temp.Text(SplitTable[i-1]);
 
                 VerticalArrangement vTemp2 = new VerticalArrangement(Table);
                 vTemp2.AlignHorizontal(3);
@@ -120,8 +143,10 @@ public class LulListe extends Form implements HandlesEventDispatching {
                 vTemp2.Column(1);
                 vTemp2.Row(i);
                 Label temp2 = new Label(vTemp2);
-                temp2.Text("Kürzel");
-            }
+                temp2.Text(SplitTable[i]);
+            } */
+
+
             return true;
         }
 
@@ -136,12 +161,14 @@ public class LulListe extends Form implements HandlesEventDispatching {
             client.connect(FtpServerUrl);
             if(!FTPReply.isPositiveCompletion(client.getReplyCode())){
                 System.err.println("Etwas ist schief gelaufen..");
+                Toast.makeText(this, "Verbindung mit FTP-Server fehlgeschlagen", Toast.LENGTH_LONG).show();
                 return "";
             }
 
             boolean success = client.login(FtpBenutzer, FtpPasswort);
             if(success) {
-                //client.changeWorkingDirectory(DateiPfad);
+                client.changeWorkingDirectory(DateiPfad);
+                Toast.makeText(this, "FTP-Login erfolgreich", Toast.LENGTH_LONG).show();
                 FTPFile[] files = client.listFiles();
                 fileNames = new ArrayList<>();
                 for (FTPFile file : files) {
@@ -149,7 +176,15 @@ public class LulListe extends Form implements HandlesEventDispatching {
                     if (!name.equals("...") && !name.equals("..") && !name.equals("")) {
                         fileNames.add(file.getName());
                     }
+
+                    if(fileNames.size() > 0)
+                      Toast.makeText(this, "Letzte gelistete Datei" + String.valueOf(fileNames.get(fileNames.size()-1)), Toast.LENGTH_SHORT).show();
+                    else Toast.makeText(this, "In dem Pfad gibt es keine Dateien", Toast.LENGTH_SHORT).show();
                 }
+                if(files.length == 0){
+                    Toast.makeText(this, "Es jibt keine Dateien", Toast.LENGTH_SHORT).show();
+                }
+
                 if(fileNames.contains(DateiName)){
                 /*int i = 0;
                 for (String name : fileNames){
@@ -158,7 +193,7 @@ public class LulListe extends Form implements HandlesEventDispatching {
                     }
                     i++;
                 }*/
-
+                Toast.makeText(this, "Lese lehrer.csv", Toast.LENGTH_LONG).show();
                 InputStream raw = client.retrieveFileStream(DateiName);
                 Scanner scanner = new java.util.Scanner(raw).useDelimiter("\\A");
                 if(scanner.hasNext()){
@@ -168,10 +203,14 @@ public class LulListe extends Form implements HandlesEventDispatching {
                 }
                 else InStr = "";
             }
+            else{
+                Toast.makeText(this, "FTP-Login fehlgeschlagen", Toast.LENGTH_LONG).show();
+            }
             return InStr;
         }
 
         catch(IOException e){
+            Toast.makeText(this, "IO-Exception...", Toast.LENGTH_LONG).show();
             System.err.println(DateiName + " konnte nicht gelesen werden");
             e.printStackTrace();
             return null;
