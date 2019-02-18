@@ -44,8 +44,8 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private static final String FtpBenutzer = "web27549934f2";
     private static final String FtpPasswort = "OgXgPAAcT8ez0JaVsOU0NzfgSoplqlUy";
     private static final String DateiName = "lehrer.csv";
-    //private static final String DateiPfad = "/var/www/web27549934/html/appdata\";
-    private static final String DateiPfad = "/appdata";
+    private static final String DateiPfad = "/var/www/web27549934/html/appdata";
+    //private static final String DateiPfad = "/appdata";
     private static final int AnzahlElemente = 50;
 
     public void $define(){
