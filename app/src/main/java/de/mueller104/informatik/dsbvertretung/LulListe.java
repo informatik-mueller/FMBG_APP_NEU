@@ -54,7 +54,6 @@ public class LulListe extends Form implements HandlesEventDispatching {
         if(component.equals(Timer1) && eventName.equals("Timer")){
             CsvTable = retrieveFTP();
             Timer1.TimerEnabled(false);
-            //Csv2.Text(CsvTable);
 
             return true;
         }
