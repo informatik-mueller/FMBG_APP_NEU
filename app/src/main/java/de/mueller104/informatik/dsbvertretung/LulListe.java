@@ -37,11 +37,11 @@ public class LulListe extends Form implements HandlesEventDispatching {
     private Label TableHeading2;
     private String CsvTable;
 
-    private static final String FtpServerUrl = "leobraguinski.bplaced.net";
-    private static final String FtpBenutzer = "leobraguinski";
-    private static final String FtpPasswort = "blabla";
+    private static final String FtpServerUrl = "fmbg-berlin.de";
+    private static final String FtpBenutzer = "web27549934f2";
+    private static final String FtpPasswort = "OgXgPAAcT8ez0JaVsOU0NzfgSoplqlUy";
     private static final String DateiName = "lehrer.csv";
-    private static final String DateiPfad = "/lulListe";
+    private static final String DateiPfad = "/";
     private static final int AnzahlElemente = 50;
 
     public void $define(){

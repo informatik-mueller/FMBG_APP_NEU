@@ -11,6 +11,7 @@ import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.Notifier;
 import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
@@ -18,22 +19,6 @@ import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.VerticalArrangement;
 
 import static android.widget.Toast.LENGTH_SHORT;
-
-//TODO: 'kein Internet'-Toast für betroffene Screens implemntieren
-//TODO: Progressbar für lange Wartezeiten
-
-/*TODO: es müssen noch implentiert werden:
- * Dokumente
- * LulListe
- * Einstellungen
- *
- * TODO: angefangen wurden:
- * Schulradio
- * Kantine
- * News
- * Datumswahl
- * Vertretung
-*/
 
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
@@ -212,6 +197,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 return true;
             }
 
+            if(component.equals(EinstellungenButton) && eventName.equals("Click")){
+                Toast.makeText(this, "Wird zurzeit nicht unterstützt", LENGTH_SHORT).show();
+                return true;
+            }
+
         if(component.equals(DokumenteButton) && eventName.equals("Click")){
             if(netzwerkVerfügbar()){
                 Intent intent = new Intent(this, Dokumente.class);
@@ -225,9 +215,13 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         }
 
             if(component.equals(SchulessenButton) && eventName.equals("Click")){
-                Intent intent = new Intent(this, Schulessen.class);
-                intent.putExtra("url", "https://natuerlich-kunde.com/");
+                if(netzwerkVerfügbar()){
+                Intent intent = new Intent(this, Kochjunge.class);
                 startActivity(intent);
+                }
+                else{
+                    Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
+                }
             }
 
             if(component.equals(PopUp) && eventName.equals("AfterChoosing")){
