@@ -1,24 +1,25 @@
 package de.mueller104.informatik.dsbvertretung;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
 
-import com.google.appinventor.components.runtime.EventDispatcher;
-import com.google.appinventor.components.runtime.Form;
-import com.google.appinventor.components.runtime.HandlesEventDispatching;
-import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.Label;
-import com.google.appinventor.components.runtime.Notifier;
-import com.google.appinventor.components.runtime.TableArrangement;
-import com.google.appinventor.components.runtime.HorizontalArrangement;
-import com.google.appinventor.components.runtime.Button;
-import com.google.appinventor.components.runtime.VerticalArrangement;
+import android.content.Context; //eine Art Interface für App-weite Daten
+import android.content.Intent; //eine Operation, welche geplant ist durchzuführen 
+import android.content.SharedPreferences; //Dateisystem für Einstellungen (z.B.AutoLogin)
+import android.net.ConnectivityManager; //Ein Klasse, um Operationen mit dem WLan-Interface durchzuführen
+import android.net.NetworkInfo; //Eine Klasse, um Netzwerkinformationen zu erhalten
+import android.widget.Toast; //Android-Toasts erstellen
 
-import static android.widget.Toast.LENGTH_SHORT;
+import com.google.appinventor.components.runtime.EventDispatcher; // Events wie Click oder Timer auslösen
+import com.google.appinventor.components.runtime.Form; // Die Basisklasse für alle AppInventor-Screens
+import com.google.appinventor.components.runtime.HandlesEventDispatching; // Interface für das Auslösen von Events
+import com.google.appinventor.components.runtime.Component; // Die Klasse für AppInventor-Komponenten
+import com.google.appinventor.components.runtime.Label; // AppInventor Beschriftungen - Texte
+import com.google.appinventor.components.runtime.Notifier; //Benachrichtgungen, besonders der Exit-Dialog
+import com.google.appinventor.components.runtime.TableArrangement; //Komponenten in einer Tabelle anordnen - für Kachellayout wichtig
+import com.google.appinventor.components.runtime.HorizontalArrangement; // Komponenten nebeneinander anordnen
+import com.google.appinventor.components.runtime.Button; //Schaltflächen importieren
+import com.google.appinventor.components.runtime.VerticalArrangement; // Komponenten untereinander anordnen
+
+import static android.widget.Toast.LENGTH_SHORT; //Konstante für kurze Toast-Länge importieren
 
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
