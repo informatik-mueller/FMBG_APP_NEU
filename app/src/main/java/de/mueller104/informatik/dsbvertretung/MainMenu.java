@@ -21,6 +21,11 @@ import com.google.appinventor.components.runtime.VerticalArrangement; // Kompone
 
 import static android.widget.Toast.LENGTH_SHORT; //Konstante für kurze Toast-Länge importieren
 
+/**
+Hauptmenü - hier landet der Benutzer standardmäßig, wenn er eingeloggt ist
+AppInventor: ja
+*/
+
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
         private HorizontalArrangement HorizontalArrangement1;
@@ -39,6 +44,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private boolean isEasterEgg = false;
         private boolean FirstTimeSolitär = false;
 
+        
+        /**
+        Wird ausgelöst, wenn der Nutzer die Zurück-Taste drückt, ein Exit-Dailog wird dann erzeugt
+        Zukünftig soll ein geheimes Solitärfeature eingebaut werden
+        */
         @Override
         public void onBackPressed(){
             if(!FirstTimeSolitär && !isEasterEgg)
@@ -46,6 +56,10 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             else if(FirstTimeSolitär) PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Solitär", true);
         }
 
+        /**
+        Diese Methode wird beim Initialisieren des AppInventor-Screens aufgerufen
+        */
+        
         protected void $define() {
 
             this.AppName("FMBG_App_Entwurf");
