@@ -108,34 +108,34 @@ public class LulListe extends Form implements HandlesEventDispatching {
         if(component.equals(Timer1) && eventName.equals("Timer")){
             CsvTable = retrieveFTP();
             Timer1.TimerEnabled(false);
-            String[] SplitTable = CsvTable.split(";");
-            VerticalArrangement vTemp1 = new VerticalArrangement(Table);
+            String[] SplitTable = CsvTable.split(";|\\n|\\r");
+            /*VerticalArrangement vTemp1 = new VerticalArrangement(Table);
             vTemp1.AlignHorizontal(3);
             vTemp1.WidthPercent(50);
             vTemp1.Column(0);
             vTemp1.Row(1);
 
-            Label temp = new Label(vTemp1);
-            temp.Text(CsvTable);
+            //Label temp = new Label(vTemp1);
+            //temp.Text(CsvTable);
 
             VerticalArrangement vTemp2 = new VerticalArrangement(Table);
             vTemp1.AlignHorizontal(3);
             vTemp1.WidthPercent(50);
             vTemp1.Column(1);
-            vTemp1.Row(1);
+            vTemp1.Row(1);*/
 
-            Label temp2 = new Label(vTemp2);
-            temp2.Text(StringUtils.join(SplitTable, "  "));
 
-         /* for(int i = 1; i<SplitTable.length; i+=2){
+          for(int i = 1; i<SplitTable.length; i+=2){
                 VerticalArrangement vTemp1 = new VerticalArrangement(Table);
                 vTemp1.AlignHorizontal(3);
                 vTemp1.WidthPercent(50);
                 vTemp1.Column(0);
-                vTemp1.Row(i-1);
+                vTemp1.Row(i);
 
                 Label temp = new Label(vTemp1);
+                temp.FontSize(16);
                 temp.Text(SplitTable[i-1]);
+                //temp.HeightPercent(2);
 
                 VerticalArrangement vTemp2 = new VerticalArrangement(Table);
                 vTemp2.AlignHorizontal(3);
@@ -143,9 +143,9 @@ public class LulListe extends Form implements HandlesEventDispatching {
                 vTemp2.Column(1);
                 vTemp2.Row(i);
                 Label temp2 = new Label(vTemp2);
+                temp2.FontSize(16);
                 temp2.Text(SplitTable[i]);
-            } */
-
+            }
 
             return true;
         }
@@ -161,14 +161,14 @@ public class LulListe extends Form implements HandlesEventDispatching {
             client.connect(FtpServerUrl);
             if(!FTPReply.isPositiveCompletion(client.getReplyCode())){
                 System.err.println("Etwas ist schief gelaufen..");
-                Toast.makeText(this, "Verbindung mit FTP-Server fehlgeschlagen", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "Verbindung mit FTP-Server fehlgeschlagen", Toast.LENGTH_LONG).show();
                 return "";
             }
 
             boolean success = client.login(FtpBenutzer, FtpPasswort);
             if(success) {
                 client.changeWorkingDirectory(DateiPfad);
-                Toast.makeText(this, "FTP-Login erfolgreich", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this, "FTP-Login erfolgreich", Toast.LENGTH_LONG).show();
                 FTPFile[] files = client.listFiles();
                 fileNames = new ArrayList<>();
                 for (FTPFile file : files) {
@@ -177,12 +177,12 @@ public class LulListe extends Form implements HandlesEventDispatching {
                         fileNames.add(file.getName());
                     }
 
-                    if(fileNames.size() > 0)
-                      Toast.makeText(this, "Letzte gelistete Datei" + String.valueOf(fileNames.get(fileNames.size()-1)), Toast.LENGTH_SHORT).show();
-                    else Toast.makeText(this, "In dem Pfad gibt es keine Dateien", Toast.LENGTH_SHORT).show();
+                    if(fileNames.size() > 0) ;
+                      //Toast.makeText(this, "Letzte gelistete Datei" + String.valueOf(fileNames.get(fileNames.size()-1)), Toast.LENGTH_SHORT).show();
+                     //else Toast.makeText(this, "In dem Pfad gibt es keine Dateien", Toast.LENGTH_SHORT).show();
                 }
                 if(files.length == 0){
-                    Toast.makeText(this, "Es jibt keine Dateien", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Es jibt keine Dateien", Toast.LENGTH_SHORT).show();
                 }
 
                 if(fileNames.contains(DateiName)){
@@ -193,7 +193,7 @@ public class LulListe extends Form implements HandlesEventDispatching {
                     }
                     i++;
                 }*/
-                Toast.makeText(this, "Lese lehrer.csv", Toast.LENGTH_LONG).show();
+               // Toast.makeText(this, "Lese lehrer.csv", Toast.LENGTH_LONG).show();
                 InputStream raw = client.retrieveFileStream(DateiName);
                 Scanner scanner = new java.util.Scanner(raw).useDelimiter("\\A");
                 if(scanner.hasNext()){
