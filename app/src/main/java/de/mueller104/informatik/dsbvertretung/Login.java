@@ -13,7 +13,7 @@ import com.google.appinventor.components.runtime.TextBox;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.VerticalArrangement;
 
-import android.Manifest;
+import android.Manifest;                
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -194,12 +194,11 @@ public class Login extends Form implements HandlesEventDispatching {
 
     public String md5(String s) {
         try {
-            // Create MD5 Hash
+            
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
             byte messageDigest[] = digest.digest();
 
-            // Create Hex String
             StringBuffer hexString = new StringBuffer();
             for (int i=0; i<messageDigest.length; i++)
                 hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
