@@ -16,10 +16,7 @@ public class Kochjunge extends Form implements HandlesEventDispatching {
 
 
     protected void $define() {
-        V1 = new VerticalArrangement(this);
-        V1.WidthPercent(100);
-        V1.WidthPercent(100);;
-        Button1 = new Button(V1);
+        Button1 = new Button(this);
         Button1.Height(Component.LENGTH_FILL_PARENT);
         Button1.Width(Component.LENGTH_FILL_PARENT);
         Button1.Image("haftbefehl.jpg");

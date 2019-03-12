@@ -27,7 +27,7 @@ AppInventor: ja
 
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
-        private VerticalArrangement VerticalArrangement3;
+        //private VerticalArrangement VerticalArrangement3;
         private HorizontalArrangement HorizontalArrangement1;
         private Button RadioButton;
         private Button SchulessenButton;
@@ -70,13 +70,11 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             checkEasterEgg();
 
             PopUp = new Notifier(this);
+            this.AlignHorizontal(3);
 
-            VerticalArrangement3 = new VerticalArrangement(this);
-            VerticalArrangement3.HeightPercent(100);
-            VerticalArrangement3.WidthPercent(100);
-            TableArrangement1 = new TableArrangement(VerticalArrangement3);
+            TableArrangement1 = new TableArrangement(this);
             TableArrangement1.Columns(8);
-            TableArrangement1.Height(LENGTH_FILL_PARENT);
+            TableArrangement1.HeightPercent(100);
             TableArrangement1.WidthPercent(100);
             TableArrangement1.Rows(8);
             HorizontalArrangement1 = new HorizontalArrangement(TableArrangement1);

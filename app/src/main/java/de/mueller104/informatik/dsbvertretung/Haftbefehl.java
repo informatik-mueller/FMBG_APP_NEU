@@ -21,6 +21,7 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        this.AlignHorizontal(3);
         Canvas1 = new Canvas(this);
         Canvas1.HeightPercent(100);
         Canvas1.WidthPercent(100);
@@ -28,7 +29,6 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         Haftbefehl.Picture("haftbefehl.jpg");
         Haftbefehl.WidthPercent(100);
         Haftbefehl.HeightPercent(100);
-
-    EventDispatcher.registerEventForDelegation(this, "ok", "Click");
+        EventDispatcher.registerEventForDelegation(this, "ok", "Click");
     }
 }
