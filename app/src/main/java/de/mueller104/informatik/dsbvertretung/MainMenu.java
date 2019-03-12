@@ -12,7 +12,6 @@ import com.google.appinventor.components.runtime.EventDispatcher; // Events wie 
 import com.google.appinventor.components.runtime.Form; // Die Basisklasse für alle AppInventor-Screens
 import com.google.appinventor.components.runtime.HandlesEventDispatching; // Interface für das Auslösen von Events
 import com.google.appinventor.components.runtime.Component; // Die Klasse für AppInventor-Komponenten
-import com.google.appinventor.components.runtime.Label; // AppInventor Beschriftungen - Texte
 import com.google.appinventor.components.runtime.Notifier; //Benachrichtgungen, besonders der Exit-Dialog
 import com.google.appinventor.components.runtime.TableArrangement; //Komponenten in einer Tabelle anordnen - für Kachellayout wichtig
 import com.google.appinventor.components.runtime.HorizontalArrangement; // Komponenten nebeneinander anordnen
@@ -42,7 +41,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         private Notifier PopUp;
         private int EasterEggCounter = 0;
         private boolean isEasterEgg = false;
-        private boolean FirstTimeSolitär = false;
+        private boolean FirstTimeSolitaer = false;
 
         
         /**
@@ -51,9 +50,9 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         */
         @Override
         public void onBackPressed(){
-            if(!FirstTimeSolitär && !isEasterEgg)
+            if(!FirstTimeSolitaer && !isEasterEgg)
             PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Nein", true);
-            else if(FirstTimeSolitär) PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Solitär", true);
+            else if(FirstTimeSolitaer) PopUp.ShowChooseDialog("Bitte wählen Sie eine Option aus", "FMBGo verlassen?", "Ja", "Solitär", true);
         }
 
         /**
@@ -166,7 +165,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
             if(component.equals(VertretungButton) && eventName.equals("Click")){
 
-                if(netzwerkVerfügbar()) {
+                if(netzwerkVerfuegbar()) {
                 Intent intent = new Intent(this, Datumswahl.class);
                 startActivity(intent);
                 }
@@ -178,7 +177,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
 
             if(component.equals(RadioButton) && eventName.equals("Click")){
-                if(netzwerkVerfügbar()){
+                if(netzwerkVerfuegbar()){
                     Intent intent = new Intent(this, Radio2.class);
                     startActivity(intent);
                 }
@@ -190,7 +189,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
 
             if(component.equals(NewsButton) && eventName.equals("Click")){
-                if(netzwerkVerfügbar()){
+                if(netzwerkVerfuegbar()){
                     Intent intent = new Intent(this, NewsActivity.class);
                     startActivity(intent);
                 }
@@ -202,7 +201,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
 
             if(component.equals(KontaktButton) && eventName.equals("Click")){
-                if(netzwerkVerfügbar()) {
+                if(netzwerkVerfuegbar()) {
                     Intent intent = new Intent(this, LulListe.class);
                     startActivity(intent);
                 }
@@ -218,7 +217,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
 
         if(component.equals(DokumenteButton) && eventName.equals("Click")){
-            if(netzwerkVerfügbar()){
+            /*if(netzwerkVerfuegbar()){
                 Intent intent = new Intent(this, Dokumente.class);
                 startActivity(intent);
             }
@@ -226,11 +225,12 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             else {
                 Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
             }
-            return true;
+            return true;*/
+            Toast.makeText(this, "Wird zurzeit nicht unterstützt", LENGTH_SHORT).show();
         }
 
             if(component.equals(SchulessenButton) && eventName.equals("Click")){
-                if(netzwerkVerfügbar()){
+                if(netzwerkVerfuegbar()){
                 Intent intent = new Intent(this, Kochjunge.class);
                 startActivity(intent);
                 }
@@ -247,7 +247,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                     EasterEggCounter++;
 
                 if(choice.equals("Solitär")){
-                    solitär();
+                    solitaer();
                 }
 
 
@@ -260,7 +260,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
         }
 
 
-        private boolean netzwerkVerfügbar() {
+        private boolean netzwerkVerfuegbar() {
             ConnectivityManager connectivityManager =
                     (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
@@ -281,12 +281,12 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             editor.commit();
             Toast.makeText(this, "Solitär wurde aktiviert", Toast.LENGTH_SHORT).show();
             checkEasterEgg();
-            FirstTimeSolitär = true;
+            FirstTimeSolitaer = true;
         }
 
-        private void solitär(){
+        private void solitaer(){
             Intent intent = new Intent(this, Solitär.class);
-            intent.putExtra("first_time", FirstTimeSolitär);
+            intent.putExtra("first_time", FirstTimeSolitaer);
             startActivity(intent);
         }
 

@@ -141,7 +141,8 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         int i = 0; for(Button button : buttonList){
             if(component.equals(button) && eventName.equals("Click")){
                 RadioUrl = availableUrls.get(i);
-                Player1.Source(RadioUrl);
+                if(!Player1.IsPlaying())
+                    Player1.Source(RadioUrl);
             }
             i++;
         }
