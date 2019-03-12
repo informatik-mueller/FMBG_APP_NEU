@@ -20,11 +20,9 @@ public class Kochjunge extends Form implements HandlesEventDispatching {
         V1.WidthPercent(100);
         V1.WidthPercent(100);;
         Button1 = new Button(V1);
-        Button1.Column(0);
         Button1.Height(Component.LENGTH_FILL_PARENT);
         Button1.Width(Component.LENGTH_FILL_PARENT);
         Button1.Image("haftbefehl.jpg");
-        Button1.Row(0);
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");
     }
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
