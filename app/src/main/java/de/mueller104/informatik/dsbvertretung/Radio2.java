@@ -14,7 +14,6 @@ import com.google.appinventor.components.runtime.ImageSprite;
 import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.Player;
 import com.google.appinventor.components.runtime.VerticalArrangement;
-import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.VerticalScrollArrangement;
 import com.google.appinventor.components.runtime.Clock;
@@ -42,8 +41,8 @@ public class Radio2 extends Form implements HandlesEventDispatching {
     //TODO: wahre Url in Erfahrung bringen
     private String RadioUrl;
     private int selectionIndex = 0;
-    private Label ÜberschriftSpace;
-    private Label Überschrift;
+    private Label UeberschriftSpace;
+    private Label Ueberschrift;
     private Label Space2;
 
     protected void $define() {
@@ -74,20 +73,20 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         VerticalHeader.BackgroundColor(0x00FFFFFF);
         VerticalHeader.Height(-1010);
         VerticalHeader.Width(-1100);
-        ÜberschriftSpace = new Label(VerticalHeader);
-        ÜberschriftSpace.HeightPercent(1);
-        Überschrift = new Label(VerticalHeader);
-        Überschrift.FontSize(30.0f);
-        Überschrift.TextColor(Label.COLOR_WHITE);
-        Überschrift.Text("Schulradio");
-        Überschrift.FontBold(true);
-        Überschrift.HeightPercent(10);
+        UeberschriftSpace = new Label(VerticalHeader);
+        UeberschriftSpace.HeightPercent(1);
+        Ueberschrift = new Label(VerticalHeader);
+        Ueberschrift.FontSize(30.0f);
+        Ueberschrift.TextColor(Label.COLOR_WHITE);
+        Ueberschrift.Text("Schulradio");
+        Ueberschrift.FontBold(true);
+        Ueberschrift.HeightPercent(10);
         container = new Canvas(VerticalArrangement1);
         container.Height(-1050);
         container.Width(-1100);
         container.BackgroundColor(0xFFEA7D12);
         PausePlayImage = new ImageSprite(container);
-        PausePlayImage.Picture("play_small.png");
+        PausePlayImage.Picture("play.png");
         PausePlayImage.X(size.x/8.5f);
         PausePlayImage.Y(size.y/20.0f);
         VerticalArrangement2 = new VerticalArrangement(VerticalArrangement1);
@@ -127,13 +126,13 @@ public class Radio2 extends Form implements HandlesEventDispatching {
 
             if (isPlaying){
                 isPlaying = false;
-                PausePlayImage.Picture("play_small.png");
+                PausePlayImage.Picture("play.png");
                 Player1.Pause();
                 return true;
             }
 
                 isPlaying = true;
-                PausePlayImage.Picture("pause_small.png");
+                PausePlayImage.Picture("pause.png");
                 Player1.Start();
                 return true;
         }
