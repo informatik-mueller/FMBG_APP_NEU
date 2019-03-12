@@ -1,5 +1,9 @@
 package de.mueller104.informatik.dsbvertretung;
 
+import android.content.Intent;
+import android.os.StrictMode;
+
+import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 
 import com.google.appinventor.components.runtime.HandlesEventDispatching;
@@ -12,7 +16,7 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.appinventor.components.runtime.TextBox;
 
 
-class Kontakt extends Form implements HandlesEventDispatching {
+public class Kontakt extends Form implements HandlesEventDispatching {
     private VerticalArrangement VerticalArrangement3;
     private Button Button3;
     private TableArrangement TableArrangement1;
@@ -28,6 +32,13 @@ class Kontakt extends Form implements HandlesEventDispatching {
     private TextBox TextBox5;
     private TextBox TextBox7;
     protected void $define() {
+
+        getWindow().setSoftInputMode(2);
+        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+        StrictMode.setVmPolicy(builder.build());
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         this.AppName("FMBG_App_Entwurf");
         this.BackgroundColor(0xFF444444);
         this.Title("Kontakt");
@@ -114,8 +125,14 @@ class Kontakt extends Form implements HandlesEventDispatching {
         TextBox7.Row(1);
         TextBox7.Text("Sekretärin: Frau Wurtzel Tel.: 030 - 42 43 85 12 Fax: 030 - 42 43 85 31 Mail: Sekretariat (B. Wurtzel)");
         TextBox7.TextColor(0xFFFFFFFF);
+        EventDispatcher.registerEventForDelegation(this, "nt", "Click");
     }
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
+        if(component.equals(Button1) && (eventName.equals("Click"))){
+            Intent intent = new Intent(this, LulListe.class);
+            startActivity(intent);
+            return true;
+        }
         return false;
     }
 }

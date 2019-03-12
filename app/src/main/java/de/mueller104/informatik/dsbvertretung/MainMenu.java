@@ -207,7 +207,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
             if(component.equals(KontaktButton) && eventName.equals("Click")){
                 if(netzwerkVerfuegbar()) {
-                    Intent intent = new Intent(this, LulListe.class);
+                    Intent intent = new Intent(this, Kontakt.class);
                     startActivity(intent);
                 }
                 else{
@@ -236,7 +236,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
             if(component.equals(SchulessenButton) && eventName.equals("Click")){
                 if(netzwerkVerfuegbar()){
-                Intent intent = new Intent(this, Kochjunge.class);
+                Intent intent = new Intent(this, Haftbefehl.class);
                 startActivity(intent);
                 }
                 else{
