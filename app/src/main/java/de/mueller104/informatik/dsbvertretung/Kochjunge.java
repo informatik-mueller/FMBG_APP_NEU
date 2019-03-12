@@ -6,20 +6,23 @@ import com.google.appinventor.components.runtime.HandlesEventDispatching;
 import com.google.appinventor.components.runtime.EventDispatcher;
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Component;
-import com.google.appinventor.components.runtime.TableArrangement;
 import com.google.appinventor.components.runtime.Button;
+import com.google.appinventor.components.runtime.VerticalArrangement;
 
 public class Kochjunge extends Form implements HandlesEventDispatching {
-    private TableArrangement TableArrangement1;
+
     private Button Button1;
+    private VerticalArrangement V1;
+
+
     protected void $define() {
-        TableArrangement1 = new TableArrangement(this);
-        TableArrangement1.Height(-1100);
-        TableArrangement1.Width(-1100);
-        Button1 = new Button(TableArrangement1);
+        V1 = new VerticalArrangement(this);
+        V1.WidthPercent(100);
+        V1.WidthPercent(100);;
+        Button1 = new Button(V1);
         Button1.Column(0);
-        Button1.Height(-1100);
-        Button1.Width(-1100);
+        Button1.Height(Component.LENGTH_FILL_PARENT);
+        Button1.Width(Component.LENGTH_FILL_PARENT);
         Button1.Image("haftbefehl.jpg");
         Button1.Row(0);
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");

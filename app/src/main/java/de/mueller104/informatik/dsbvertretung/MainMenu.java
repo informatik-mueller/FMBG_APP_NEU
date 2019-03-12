@@ -27,6 +27,7 @@ AppInventor: ja
 
 public class MainMenu extends Form implements HandlesEventDispatching {
         private TableArrangement TableArrangement1;
+        private VerticalArrangement VerticalArrangement3;
         private HorizontalArrangement HorizontalArrangement1;
         private Button RadioButton;
         private Button SchulessenButton;
@@ -69,16 +70,20 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             checkEasterEgg();
 
             PopUp = new Notifier(this);
-            TableArrangement1 = new TableArrangement(this);
+
+            VerticalArrangement3 = new VerticalArrangement(this);
+            VerticalArrangement3.HeightPercent(100);
+            VerticalArrangement3.WidthPercent(100);
+            TableArrangement1 = new TableArrangement(VerticalArrangement3);
             TableArrangement1.Columns(8);
             TableArrangement1.Height(LENGTH_FILL_PARENT);
-            TableArrangement1.Width(-1100);
+            TableArrangement1.WidthPercent(100);
             TableArrangement1.Rows(8);
             HorizontalArrangement1 = new HorizontalArrangement(TableArrangement1);
             HorizontalArrangement1.BackgroundColor(0x00FFFFFF);
             HorizontalArrangement1.Column(0);
-            HorizontalArrangement1.Height(-1037);
-            HorizontalArrangement1.Width(-1100);
+            HorizontalArrangement1.HeightPercent(37);
+            HorizontalArrangement1.Width(Component.LENGTH_FILL_PARENT);
             HorizontalArrangement1.Row(0);
             RadioButton = new Button(HorizontalArrangement1);
             RadioButton.BackgroundColor(0xFFCC6600);
@@ -148,7 +153,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             KontaktButton.Height(LENGTH_FILL_PARENT);
             KontaktButton.Width(LENGTH_FILL_PARENT);
             KontaktButton.Shape(2);
-            KontaktButton.Text("Kontakt");
+            KontaktButton.Text("LuL-Liste");
             KontaktButton.TextColor(0xFF444444);
             EventDispatcher.registerEventForDelegation(this, "1", "Click");
             EventDispatcher.registerEventForDelegation(this, "2", "AfterChoosing");
@@ -202,7 +207,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
 
             if(component.equals(KontaktButton) && eventName.equals("Click")){
                 if(netzwerkVerfuegbar()) {
-                    Intent intent = new Intent(this, Kontakt.class);
+                    Intent intent = new Intent(this, LulListe.class);
                     startActivity(intent);
                 }
                 else{
