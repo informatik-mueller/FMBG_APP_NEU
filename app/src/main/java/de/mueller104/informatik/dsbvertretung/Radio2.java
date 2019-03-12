@@ -87,8 +87,8 @@ public class Radio2 extends Form implements HandlesEventDispatching {
         container.BackgroundColor(0xFFEA7D12);
         PausePlayImage = new ImageSprite(container);
         PausePlayImage.Picture("play.png");
-        PausePlayImage.X(size.x/8.5f);
-        PausePlayImage.Y(size.y/20.0f);
+        PausePlayImage.X(size.x/11.5f);
+        PausePlayImage.Y(size.y/25.0f);
         VerticalArrangement2 = new VerticalArrangement(VerticalArrangement1);
         VerticalArrangement2.BackgroundColor(0xFF444444);
         VerticalArrangement2.Height(-1040);
