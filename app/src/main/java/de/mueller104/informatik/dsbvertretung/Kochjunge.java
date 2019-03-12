@@ -20,7 +20,7 @@ public class Kochjunge extends Form implements HandlesEventDispatching {
         Button1.Column(0);
         Button1.Height(-1100);
         Button1.Width(-1100);
-        Button1.Image("kochjunge.jpg");
+        Button1.Image("haftbefehl.jpg");
         Button1.Row(0);
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");
     }
