@@ -1,5 +1,6 @@
 package de.mueller104.informatik.dsbvertretung;
 
+import android.content.Intent;
 import android.os.StrictMode;
 
 import com.google.appinventor.components.runtime.Canvas;
@@ -30,5 +31,15 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         Haftbefehl.WidthPercent(100);
         Haftbefehl.HeightPercent(100);
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");
+    }
+
+    @Override
+    public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
+        if(component.equals(Haftbefehl) && eventName.equals("Click")){
+            Intent intent = new Intent(this, Schulessen.class);
+            startActivity(intent);
+        }
+
+        return false;
     }
 }

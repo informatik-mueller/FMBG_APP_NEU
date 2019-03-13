@@ -151,7 +151,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             KontaktButton.Height(LENGTH_FILL_PARENT);
             KontaktButton.Width(LENGTH_FILL_PARENT);
             KontaktButton.Shape(2);
-            KontaktButton.Text("LuL-Liste");
+            KontaktButton.Text("Kontakt");
             KontaktButton.TextColor(0xFF444444);
             EventDispatcher.registerEventForDelegation(this, "1", "Click");
             EventDispatcher.registerEventForDelegation(this, "2", "AfterChoosing");
