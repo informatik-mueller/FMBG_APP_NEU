@@ -41,6 +41,8 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
         if(component.equals(Debug) && eventName.equals("Click")){
             Intent intent = new Intent(this, Schulessen.class);
+            /* HIER URL FÜR ESSENSANBIETER GGF: ÄNDERN*/
+            intent.putExtra("url,", "https://natuerlich-kunde.com/");
             startActivity(intent);
             return true;
         }
