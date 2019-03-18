@@ -51,6 +51,7 @@ class NewsDesign extends Form implements HandlesEventDispatching {
         VerticalArrangement4.Height(-1033);
         VerticalArrangement4.Width(-1100);
     }
+
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
         return false;
     }

@@ -229,7 +229,9 @@ public class MainMenu extends Form implements HandlesEventDispatching {
                 Toast.makeText(this, "Kein Internet", LENGTH_SHORT).show();
             }
             return true;*/
-            Toast.makeText(this, "Wird zurzeit nicht unterstützt", LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DokumenteAuswahl.class);
+
+            //Toast.makeText(this, "Wird zurzeit nicht unterstützt", LENGTH_SHORT).show();
         }
 
             if(component.equals(SchulessenButton) && eventName.equals("Click")){
