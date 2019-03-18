@@ -25,6 +25,8 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         StrictMode.setThreadPolicy(policy);
 
         this.AlignHorizontal(3);
+        Debug = new Button(this);
+        Debug.Text("Zur Webseite");
         Canvas1 = new Canvas(this);
         Canvas1.HeightPercent(100);
         Canvas1.WidthPercent(100);
@@ -32,15 +34,12 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         Haftbefehl.Picture("haftbefehl.jpg");
         Haftbefehl.WidthPercent(100);
         Haftbefehl.HeightPercent(100);
-        Debug = new Button(Canvas1);
-        Debug.Text("Debug");
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");
     }
 
     @Override
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
         if(component.equals(Debug) && eventName.equals("Click")){
-            Haftbefehl.Picture("fake.jpg");
             Intent intent = new Intent(this, Schulessen.class);
             startActivity(intent);
             return true;

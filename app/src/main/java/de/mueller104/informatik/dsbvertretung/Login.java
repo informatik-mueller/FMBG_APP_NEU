@@ -192,7 +192,7 @@ public class Login extends Form implements HandlesEventDispatching {
         editor.commit();
         }
 
-    public String md5(String s) {
+    public static String md5(String s) {
         try {
             
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
