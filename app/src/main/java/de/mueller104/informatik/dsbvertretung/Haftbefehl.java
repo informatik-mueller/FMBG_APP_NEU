@@ -3,6 +3,7 @@ package de.mueller104.informatik.dsbvertretung;
 import android.content.Intent;
 import android.os.StrictMode;
 
+import com.google.appinventor.components.runtime.Button;
 import com.google.appinventor.components.runtime.Canvas;
 import com.google.appinventor.components.runtime.Component;
 import com.google.appinventor.components.runtime.EventDispatcher;
@@ -14,6 +15,7 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
 
     private Canvas Canvas1;
     private ImageSprite Haftbefehl;
+    private Button Debug;
 
     protected void $define(){
         getWindow().setSoftInputMode(2);
@@ -30,14 +32,18 @@ public class Haftbefehl extends Form implements HandlesEventDispatching {
         Haftbefehl.Picture("haftbefehl.jpg");
         Haftbefehl.WidthPercent(100);
         Haftbefehl.HeightPercent(100);
+        Debug = new Button(Canvas1);
+        Debug.Text("Debug");
         EventDispatcher.registerEventForDelegation(this, "ok", "Click");
     }
 
     @Override
     public boolean dispatchEvent(Component component, String componentName, String eventName, Object[] params){
-        if(component.equals(Haftbefehl) && eventName.equals("Click")){
+        if(component.equals(Debug) && eventName.equals("Click")){
+            Haftbefehl.Picture("fake.jpg");
             Intent intent = new Intent(this, Schulessen.class);
             startActivity(intent);
+            return true;
         }
 
         return false;
