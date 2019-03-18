@@ -28,6 +28,7 @@
         <activity android:name=".Radio2"></activity>
         <activity android:name=".Kochjunge"></activity>
         <activity android:name=".Haftbefehl"></activity>
+        <activity android:name=".DokumenteAuswahl"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

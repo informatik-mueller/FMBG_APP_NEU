@@ -230,7 +230,7 @@ public class MainMenu extends Form implements HandlesEventDispatching {
             }
             return true;*/
             Intent intent = new Intent(this, DokumenteAuswahl.class);
-
+            startActivity(intent);
             //Toast.makeText(this, "Wird zurzeit nicht unterstützt", LENGTH_SHORT).show();
         }
 

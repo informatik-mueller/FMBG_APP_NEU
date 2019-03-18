@@ -9,7 +9,7 @@ import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.Button;
 
-class DokumenteAuswahl extends Form implements HandlesEventDispatching {
+public class DokumenteAuswahl extends Form implements HandlesEventDispatching {
     private VerticalArrangement VerticalArrangement1;
     private HorizontalArrangement HorizontalArrangement6;
     private Button Button2;
