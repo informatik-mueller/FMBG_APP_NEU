@@ -5,6 +5,7 @@ import com.google.appinventor.components.runtime.HandlesEventDispatching;
 
 import com.google.appinventor.components.runtime.Form;
 import com.google.appinventor.components.runtime.Component;
+import com.google.appinventor.components.runtime.Label;
 import com.google.appinventor.components.runtime.VerticalArrangement;
 import com.google.appinventor.components.runtime.HorizontalArrangement;
 import com.google.appinventor.components.runtime.Button;
@@ -20,6 +21,9 @@ public class DokumenteAuswahl extends Form implements HandlesEventDispatching {
     private HorizontalArrangement HorizontalArrangement4;
     private Button Button5;
     private HorizontalArrangement HorizontalArrangement5;
+    private Label Ueberschrift;
+    private Label Space1;
+
     protected void $define() {
         this.AppName("FMBG_App_Entwurf");
         this.BackgroundColor(0xFF444444);
@@ -33,6 +37,11 @@ public class DokumenteAuswahl extends Form implements HandlesEventDispatching {
         HorizontalArrangement6 = new HorizontalArrangement(VerticalArrangement1);
         HorizontalArrangement6.BackgroundColor(0x00FFFFFF);
         HorizontalArrangement6.Height(-1010);
+        Ueberschrift = new Label(this);
+        Ueberschrift.Text("Dokumente");
+        Ueberschrift.TextColor(Component.COLOR_WHITE);
+        Space1 = new Label(this);
+        Space1.HeightPercent(3);
         Button2 = new Button(VerticalArrangement1);
         Button2.BackgroundColor(0xFFCC6600);
         Button2.FontSize(20);
